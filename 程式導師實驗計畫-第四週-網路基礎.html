@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang=tw>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="筆記網路的大方向以及基礎概念。  API什麼是 API？ 大學時期第一次理解 API 的概念是透過這部影片。   API 的全名為 Application Programming Interface ，中文為應用程式介面 API 是軟體與軟體之間的溝通管道，規定了當一個系統上的軟體發出 Request 向另一個系統上的軟體交付資料與接收資料的方式。它本身是抽象的，僅定義一個介面，這個介面可以方便開">
+<meta property="og:type" content="article">
+<meta property="og:title" content="程式導師實驗計畫  [第四週] 網路基礎概論">
+<meta property="og:url" content="https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E5%9B%9B%E9%80%B1-%E7%B6%B2%E8%B7%AF%E5%9F%BA%E7%A4%8E.html">
+<meta property="og:site_name" content="MILLETBARD">
+<meta property="og:description" content="筆記網路的大方向以及基礎概念。  API什麼是 API？ 大學時期第一次理解 API 的概念是透過這部影片。   API 的全名為 Application Programming Interface ，中文為應用程式介面 API 是軟體與軟體之間的溝通管道，規定了當一個系統上的軟體發出 Request 向另一個系統上的軟體交付資料與接收資料的方式。它本身是抽象的，僅定義一個介面，這個介面可以方便開">
+<meta property="og:locale" content="tw">
+<meta property="article:published_time" content="2019-11-06T08:44:19.000Z">
+<meta property="article:modified_time" content="2022-05-28T10:27:45.295Z">
+<meta property="article:author" content="milletbard">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>程式導師實驗計畫  [第四週] 網路基礎概論</title><meta name="robots" content="noindex">
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="القائمة"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="القائمة"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="الأعلى" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">الرئيسية</a></li><!--
+     --><!--
+       --><li><a href="/about/">معلومات عنّي</a></li><!--
+     --><!--
+       --><li><a href="/archives/">منشورات</a></li><!--
+     --><!--
+       --><li><a href="/search/">بحث</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="العودة إلى الأعلى" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="مشاركة المنشور" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">المنشور السابق</span>
+      <span id="i-next" class="info" style="display:none;">المنشور التالي</span>
+      <span id="i-top" class="info" style="display:none;">العودة إلى الأعلى</span>
+      <span id="i-share" class="info" style="display:none;">مشاركة المنشور</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E5%9B%9B%E9%80%B1-%E7%B6%B2%E8%B7%AF%E5%9F%BA%E7%A4%8E.html" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E5%9B%9B%E9%80%B1-%E7%B6%B2%E8%B7%AF%E5%9F%BA%E7%A4%8E.html&text=程式導師實驗計畫  [第四週] 網路基礎概論" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E5%9B%9B%E9%80%B1-%E7%B6%B2%E8%B7%AF%E5%9F%BA%E7%A4%8E.html&title=程式導師實驗計畫  [第四週] 網路基礎概論" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E5%9B%9B%E9%80%B1-%E7%B6%B2%E8%B7%AF%E5%9F%BA%E7%A4%8E.html&is_video=false&description=程式導師實驗計畫  [第四週] 網路基礎概論" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=程式導師實驗計畫  [第四週] 網路基礎概論&body=Check out this article: https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E5%9B%9B%E9%80%B1-%E7%B6%B2%E8%B7%AF%E5%9F%BA%E7%A4%8E.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E5%9B%9B%E9%80%B1-%E7%B6%B2%E8%B7%AF%E5%9F%BA%E7%A4%8E.html&title=程式導師實驗計畫  [第四週] 網路基礎概論" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E5%9B%9B%E9%80%B1-%E7%B6%B2%E8%B7%AF%E5%9F%BA%E7%A4%8E.html&title=程式導師實驗計畫  [第四週] 網路基礎概論" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E5%9B%9B%E9%80%B1-%E7%B6%B2%E8%B7%AF%E5%9F%BA%E7%A4%8E.html&title=程式導師實驗計畫  [第四週] 網路基礎概論" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E5%9B%9B%E9%80%B1-%E7%B6%B2%E8%B7%AF%E5%9F%BA%E7%A4%8E.html&title=程式導師實驗計畫  [第四週] 網路基礎概論" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E5%9B%9B%E9%80%B1-%E7%B6%B2%E8%B7%AF%E5%9F%BA%E7%A4%8E.html&name=程式導師實驗計畫  [第四週] 網路基礎概論&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E5%9B%9B%E9%80%B1-%E7%B6%B2%E8%B7%AF%E5%9F%BA%E7%A4%8E.html&t=程式導師實驗計畫  [第四週] 網路基礎概論" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#API"><span class="toc-number">1.</span> <span class="toc-text">API</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP-method"><span class="toc-number">2.</span> <span class="toc-text">HTTP method</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP-Statue-Code"><span class="toc-number">3.</span> <span class="toc-text">HTTP Statue Code</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        程式導師實驗計畫  [第四週] 網路基礎概論
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">milletbard</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-11-06T08:44:19.000Z" itemprop="datePublished">2019-11-06</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>筆記網路的大方向以及基礎概念。</p>
+<hr>
+<h1 id="API"><a href="#API" class="headerlink" title="API"></a>API</h1><p>什麼是 API？ 大學時期第一次理解 API 的概念是透過這部影片。</p>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/zvKadd9Cflc" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+
+<p>API 的全名為 Application Programming Interface ，中文為<strong>應用程式介面</strong></p>
+<p>API 是軟體與軟體之間的溝通管道，規定了當一個系統上的軟體發出 Request 向另一個系統上的軟體交付資料與接收資料的方式。<br>它本身是抽象的，僅定義一個介面，這個介面可以方便開發者的完成交付與接收資訊的目的。</p>
+<h1 id="HTTP-method"><a href="#HTTP-method" class="headerlink" title="HTTP method"></a>HTTP method</h1><p>我們可以用 RESTful 風格的架構來發 Request 給 Server 來完成我們的需球，而 HTTP method 分為以下幾種詞彙</p>
+<ul>
+<li>GET : 讀取特定資源(按照識別碼)或資源集合</li>
+</ul>
+<p>例如一個網路商店的應用，需要撈出全部的商品資訊</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET http://www.store.com/products</span><br></pre></td></tr></table></figure>
+
+<p>而需要撈出指定的商品資訊，這邊的<code>12345</code>就是識別碼，讓 server 端知道你需要的是哪一件商品資訊</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET http://www.store.com/products/12345</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>POST : 建立新資源</li>
+</ul>
+<p>當你想要建立一個購買訂單或是創建新的商品資訊，可以利用 POST 送出</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">POST http://www.store.com/orders</span><br><span class="line">&lt;purchase-order&gt;</span><br><span class="line">  &lt;item&gt; ... &lt;/item&gt;</span><br><span class="line">&lt;/purchase-order&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>PUT : 使用給定的一組資源<strong>替換</strong>目前的資源。</li>
+</ul>
+<p>可以用來修改現有的商品資訊。</p>
+<ul>
+<li>DELETE : 刪除整組或指定的資源</li>
+</ul>
+<p>參考資料：</p>
+<ul>
+<li><a href="https://zh.wikipedia.org/wiki/%E8%A1%A8%E7%8E%B0%E5%B1%82%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2" target="_blank" rel="noopener">表現層狀態轉換</a></li>
+</ul>
+<h1 id="HTTP-Statue-Code"><a href="#HTTP-Statue-Code" class="headerlink" title="HTTP Statue Code"></a>HTTP Statue Code</h1><p>HTTP Status Code 指的是 Server 端 回應的狀態，不同的狀態碼分別代表著各自的類型。<br>這樣的分類可區分為三個層級，分別用三個數字顯示(ex: 404 代表找不到網頁、200 表示網頁正常)，第一個數字為大類，第二個數字為中類，第三個數字為小類 。</p>
+<p>狀態碼大致分為五種類別：</p>
+<ul>
+<li>1xx - 資訊回應 ( Informational )</li>
+</ul>
+<p>當 Server 端 正在處理請求或是切換通訊協定會暫時回應 Client 端 一個臨時狀態。</p>
+<ul>
+<li>2xx - 成功 ( OK )</li>
+</ul>
+<p>請求成功、創建成功、請求已被接受或是已經理解 Client 端 的要求。</p>
+<ul>
+<li>3xx - 重新導向( Redirection )</li>
+</ul>
+<p>Server 端需要採取更多動作才能完成請求，例如網址已經不存在，重新導向到指定的新網址。</p>
+<ul>
+<li>4xx - Client 端錯誤 ( Client Error )</li>
+</ul>
+<p>代表發生的錯誤跟 Client 端 有關，例如權限不足、參數不合法、密碼錯誤</p>
+<ul>
+<li>5xx - Server 端錯誤 ( Server Error )</li>
+</ul>
+<p>代表發生的錯誤跟 Server 端 有關，無法完成 Client 端 的請求。</p>
+<p>大致了解狀態碼的類型之後就可以從 Server 回應的狀態碼來知道現在是什麼狀況</p>
+<p>參考資料：</p>
+<ul>
+<li><a href="https://blog.miniasp.com/post/2009/01/16/Web-developer-should-know-about-HTTP-Status-Code" target="_blank" rel="noopener">網頁開發人員應了解的 HTTP 狀態碼</a></li>
+<li><a href="https://developer.mozilla.org/zh-TW/docs/Web/HTTP/Status" target="_blank" rel="noopener">HTTP 狀態碼</a></li>
+</ul>
+<hr>
+<!-- flag of hidden posts -->
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">الرئيسية</a></li>
+         
+          <li><a href="/about/">معلومات عنّي</a></li>
+         
+          <li><a href="/archives/">منشورات</a></li>
+         
+          <li><a href="/search/">بحث</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#API"><span class="toc-number">1.</span> <span class="toc-text">API</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP-method"><span class="toc-number">2.</span> <span class="toc-text">HTTP method</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP-Statue-Code"><span class="toc-number">3.</span> <span class="toc-text">HTTP Statue Code</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E5%9B%9B%E9%80%B1-%E7%B6%B2%E8%B7%AF%E5%9F%BA%E7%A4%8E.html" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E5%9B%9B%E9%80%B1-%E7%B6%B2%E8%B7%AF%E5%9F%BA%E7%A4%8E.html&text=程式導師實驗計畫  [第四週] 網路基礎概論" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E5%9B%9B%E9%80%B1-%E7%B6%B2%E8%B7%AF%E5%9F%BA%E7%A4%8E.html&title=程式導師實驗計畫  [第四週] 網路基礎概論" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E5%9B%9B%E9%80%B1-%E7%B6%B2%E8%B7%AF%E5%9F%BA%E7%A4%8E.html&is_video=false&description=程式導師實驗計畫  [第四週] 網路基礎概論" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=程式導師實驗計畫  [第四週] 網路基礎概論&body=Check out this article: https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E5%9B%9B%E9%80%B1-%E7%B6%B2%E8%B7%AF%E5%9F%BA%E7%A4%8E.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E5%9B%9B%E9%80%B1-%E7%B6%B2%E8%B7%AF%E5%9F%BA%E7%A4%8E.html&title=程式導師實驗計畫  [第四週] 網路基礎概論" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E5%9B%9B%E9%80%B1-%E7%B6%B2%E8%B7%AF%E5%9F%BA%E7%A4%8E.html&title=程式導師實驗計畫  [第四週] 網路基礎概論" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E5%9B%9B%E9%80%B1-%E7%B6%B2%E8%B7%AF%E5%9F%BA%E7%A4%8E.html&title=程式導師實驗計畫  [第四週] 網路基礎概論" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E5%9B%9B%E9%80%B1-%E7%B6%B2%E8%B7%AF%E5%9F%BA%E7%A4%8E.html&title=程式導師實驗計畫  [第四週] 網路基礎概論" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E5%9B%9B%E9%80%B1-%E7%B6%B2%E8%B7%AF%E5%9F%BA%E7%A4%8E.html&name=程式導師實驗計畫  [第四週] 網路基礎概論&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E5%9B%9B%E9%80%B1-%E7%B6%B2%E8%B7%AF%E5%9F%BA%E7%A4%8E.html&t=程式導師實驗計畫  [第四週] 網路基礎概論" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> القائمة</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> المحتويات</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> مشاركة</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> العودة إلى الأعلى</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    حقوق النشر &copy;
+    
+    
+    2016-2022
+    milletbard
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">الرئيسية</a></li><!--
+     --><!--
+       --><li><a href="/about/">معلومات عنّي</a></li><!--
+     --><!--
+       --><li><a href="/archives/">منشورات</a></li><!--
+     --><!--
+       --><li><a href="/search/">بحث</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"انسخ!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "تم النسخ!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

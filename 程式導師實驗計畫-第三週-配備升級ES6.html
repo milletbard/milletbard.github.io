@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang=tw>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="ECMAScriptES5、ES6 指的是 JavaScript 的版本，會叫 ES 而不是 JS 是因為 JavaScript 是根據 ECMAScript 的規範下實現的程式語言，因此被稱為 ES5 、 ES6 。 所以 ECMAScript 是一種規範，而 JavaScript 是根據 ECMAScript 這套規範下實現的程式語言。 ES5ECMAScript 第五版  strict 模">
+<meta property="og:type" content="article">
+<meta property="og:title" content="程式導師實驗計畫  [第三週] JavaScript 配備升級-ES6">
+<meta property="og:url" content="https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%89%E9%80%B1-%E9%85%8D%E5%82%99%E5%8D%87%E7%B4%9AES6.html">
+<meta property="og:site_name" content="MILLETBARD">
+<meta property="og:description" content="ECMAScriptES5、ES6 指的是 JavaScript 的版本，會叫 ES 而不是 JS 是因為 JavaScript 是根據 ECMAScript 的規範下實現的程式語言，因此被稱為 ES5 、 ES6 。 所以 ECMAScript 是一種規範，而 JavaScript 是根據 ECMAScript 這套規範下實現的程式語言。 ES5ECMAScript 第五版  strict 模">
+<meta property="og:locale" content="tw">
+<meta property="og:image" content="https://milletbard.github.io/es6.png">
+<meta property="article:published_time" content="2019-11-02T01:26:57.000Z">
+<meta property="article:modified_time" content="2022-05-28T10:27:45.291Z">
+<meta property="article:author" content="milletbard">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://milletbard.github.io/es6.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>程式導師實驗計畫  [第三週] JavaScript 配備升級-ES6</title><meta name="robots" content="noindex">
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="القائمة"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="القائمة"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="الأعلى" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">الرئيسية</a></li><!--
+     --><!--
+       --><li><a href="/about/">معلومات عنّي</a></li><!--
+     --><!--
+       --><li><a href="/archives/">منشورات</a></li><!--
+     --><!--
+       --><li><a href="/search/">بحث</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="العودة إلى الأعلى" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="مشاركة المنشور" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">المنشور السابق</span>
+      <span id="i-next" class="info" style="display:none;">المنشور التالي</span>
+      <span id="i-top" class="info" style="display:none;">العودة إلى الأعلى</span>
+      <span id="i-share" class="info" style="display:none;">مشاركة المنشور</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%89%E9%80%B1-%E9%85%8D%E5%82%99%E5%8D%87%E7%B4%9AES6.html" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%89%E9%80%B1-%E9%85%8D%E5%82%99%E5%8D%87%E7%B4%9AES6.html&text=程式導師實驗計畫  [第三週] JavaScript 配備升級-ES6" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%89%E9%80%B1-%E9%85%8D%E5%82%99%E5%8D%87%E7%B4%9AES6.html&title=程式導師實驗計畫  [第三週] JavaScript 配備升級-ES6" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%89%E9%80%B1-%E9%85%8D%E5%82%99%E5%8D%87%E7%B4%9AES6.html&is_video=false&description=程式導師實驗計畫  [第三週] JavaScript 配備升級-ES6" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=程式導師實驗計畫  [第三週] JavaScript 配備升級-ES6&body=Check out this article: https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%89%E9%80%B1-%E9%85%8D%E5%82%99%E5%8D%87%E7%B4%9AES6.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%89%E9%80%B1-%E9%85%8D%E5%82%99%E5%8D%87%E7%B4%9AES6.html&title=程式導師實驗計畫  [第三週] JavaScript 配備升級-ES6" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%89%E9%80%B1-%E9%85%8D%E5%82%99%E5%8D%87%E7%B4%9AES6.html&title=程式導師實驗計畫  [第三週] JavaScript 配備升級-ES6" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%89%E9%80%B1-%E9%85%8D%E5%82%99%E5%8D%87%E7%B4%9AES6.html&title=程式導師實驗計畫  [第三週] JavaScript 配備升級-ES6" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%89%E9%80%B1-%E9%85%8D%E5%82%99%E5%8D%87%E7%B4%9AES6.html&title=程式導師實驗計畫  [第三週] JavaScript 配備升級-ES6" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%89%E9%80%B1-%E9%85%8D%E5%82%99%E5%8D%87%E7%B4%9AES6.html&name=程式導師實驗計畫  [第三週] JavaScript 配備升級-ES6&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%89%E9%80%B1-%E9%85%8D%E5%82%99%E5%8D%87%E7%B4%9AES6.html&t=程式導師實驗計畫  [第三週] JavaScript 配備升級-ES6" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ECMAScript"><span class="toc-number">1.</span> <span class="toc-text">ECMAScript</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ES5"><span class="toc-number">2.</span> <span class="toc-text">ES5</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#strict-模式"><span class="toc-number">2.1.</span> <span class="toc-text">strict 模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Array"><span class="toc-number">2.2.</span> <span class="toc-text">Array</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ES6"><span class="toc-number">3.</span> <span class="toc-text">ES6</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Default-Parameters-預設參數"><span class="toc-number">3.1.</span> <span class="toc-text">Default Parameters - 預設參數</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Template-Literals-板模字串符"><span class="toc-number">3.2.</span> <span class="toc-text">Template Literals - 板模字串符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Multi-line-Strings-多行字串輸出"><span class="toc-number">3.3.</span> <span class="toc-text">Multi-line Strings - 多行字串輸出</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Destructuring-Assignment-解構賦值"><span class="toc-number">4.</span> <span class="toc-text">Destructuring Assignment - 解構賦值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Enhanced-Object-Literals-物件實字"><span class="toc-number">5.</span> <span class="toc-text">Enhanced Object Literals - 物件實字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Arrow-Functions-in-ES6-箭頭函式"><span class="toc-number">6.</span> <span class="toc-text">Arrow Functions in ES6 - 箭頭函式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Promises-in-ES6"><span class="toc-number">7.</span> <span class="toc-text">Promises in ES6 -</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#babel"><span class="toc-number"></span> <span class="toc-text">babel</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#指南參考"><span class="toc-number">1.</span> <span class="toc-text">指南參考</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#程式導師實驗計畫第三期"><span class="toc-number"></span> <span class="toc-text">程式導師實驗計畫第三期</span></a>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        程式導師實驗計畫  [第三週] JavaScript 配備升級-ES6
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">milletbard</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-11-02T01:26:57.000Z" itemprop="datePublished">2019-11-02</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="ECMAScript"><a href="#ECMAScript" class="headerlink" title="ECMAScript"></a>ECMAScript</h2><p>ES5、ES6 指的是 JavaScript 的版本，會叫 ES 而不是 JS 是因為 JavaScript 是根據 <a href="https://zh.wikipedia.org/wiki/ECMAScript" target="_blank" rel="noopener">ECMAScript</a> 的規範下實現的程式語言，因此被稱為 ES5 、 ES6 。</p>
+<p>所以 <strong>ECMAScript 是一種規範，而 JavaScript 是根據 ECMAScript 這套規範下實現的程式語言</strong>。</p>
+<h2 id="ES5"><a href="#ES5" class="headerlink" title="ES5"></a>ES5</h2><p>ECMAScript 第五版 </p>
+<h3 id="strict-模式"><a href="#strict-模式" class="headerlink" title="strict 模式"></a>strict 模式</h3><p>嚴格模式，提供開發者語法嚴格，語法受限的模式( strict mode )，目的是為了讓開發者開發「具穩定性的 JavaScript」。</p>
+<ul>
+<li>透過拋出錯誤的方式消除被忽略的錯誤</li>
+<li>修正會阻礙 JavaScript 引擎進行最佳化的錯誤</li>
+<li>止使用一些有可能被未來版本 ECMAScript 定義的語法</li>
+</ul>
+<p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Strict_mode" target="_blank" rel="noopener">JavaScript 參考文件 - Strict mode</a></p>
+<h3 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h3><p>增加了處理陣列的方法。</p>
+<ul>
+<li>map</li>
+<li>forEach</li>
+<li>indexOf</li>
+<li>every</li>
+<li>some</li>
+<li>filter</li>
+<li>lastIndexOf</li>
+<li>isArray</li>
+<li>reduce</li>
+<li>reduceRight</li>
+</ul>
+<p>文件都找得到用法<br><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank" rel="noopener">JavaScript | MDN - Array</a></p>
+<h2 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h2><p>ECMAScript 第六版，新增了一些  JavaScript 的新特性。</p>
+<p><img src="es6.png" alt=""></p>
+<ul>
+<li>Default Parameters in ES6</li>
+<li>Template Literals in ES6</li>
+<li>Multi-line Strings in ES6</li>
+<li>Destructuring Assignment in ES6</li>
+<li>Enhanced Object Literals in ES6</li>
+<li>Arrow Functions in ES6</li>
+<li>Promises in ES6</li>
+<li>Block-Scoped Constructs Let and Const</li>
+<li>Classes in ES6</li>
+<li>Modules in ES6</li>
+</ul>
+<hr>
+<h3 id="Default-Parameters-預設參數"><a href="#Default-Parameters-預設參數" class="headerlink" title="Default Parameters - 預設參數"></a>Default Parameters - 預設參數</h3><blockquote>
+<p>當函式沒有給參數數值，函式會使用預設的數值。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> link = <span class="function"><span class="keyword">function</span> (<span class="params">height = <span class="number">50</span>, color = <span class="string">"red"</span>, url = <span class="string">"http://azat.co"</span></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  <span class="built_in">console</span>.log(height, color, url);</span><br><span class="line">  <span class="comment">// 50 'red' 'http://acat.co'</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Template-Literals-板模字串符"><a href="#Template-Literals-板模字串符" class="headerlink" title="Template Literals - 板模字串符"></a>Template Literals - 板模字串符</h3><blockquote>
+<p>板模字串，可以在字串中嵌入數。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> first = <span class="string">"Luke"</span>;</span><br><span class="line"><span class="keyword">var</span> last = <span class="string">"Lin"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> name = <span class="string">`my name is <span class="subst">$&#123;first&#125;</span> <span class="subst">$&#123;last&#125;</span>.`</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(name);</span><br><span class="line"><span class="comment">// my name is Luke Lin.</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Multi-line-Strings-多行字串輸出"><a href="#Multi-line-Strings-多行字串輸出" class="headerlink" title="Multi-line Strings - 多行字串輸出"></a>Multi-line Strings - 多行字串輸出</h3><blockquote>
+<p>透過 backticks 鍵，能夠進行多行的字串輸出。</p>
+</blockquote>
+<p><code>backticks 鍵為鍵盤數字鍵</code>1<code>左邊的 **</code>** 按鍵`</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> miltiLine = <span class="string">`first line</span></span><br><span class="line"><span class="string">second line`</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(miltiLine);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">irst line</span></span><br><span class="line"><span class="comment">second line</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Destructuring-Assignment-解構賦值"><a href="#Destructuring-Assignment-解構賦值" class="headerlink" title="Destructuring Assignment - 解構賦值"></a>Destructuring Assignment - 解構賦值</h2><blockquote>
+<p>通過配對陣列索引值，或是物件的<code>key</code>鍵來對變數賦值。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> [a, b, ...rest] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">// 2</span></span><br><span class="line"><span class="built_in">console</span>.log(rest); <span class="comment">//[ 3, 4, 5 ]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Enhanced-Object-Literals-物件實字"><a href="#Enhanced-Object-Literals-物件實字" class="headerlink" title="Enhanced Object Literals - 物件實字"></a>Enhanced Object Literals - 物件實字</h2><blockquote>
+<p>當屬性名稱與宣告的變數<strong>一模一樣</strong>，ES6 提供了簡寫的方式。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getPerson</span>(<span class="params">name, number</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    name: name,</span><br><span class="line">    number: number,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getPersonInES6</span>(<span class="params">name, number</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    name,</span><br><span class="line">    number,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(getPerson(<span class="string">"Luke Lin"</span>, <span class="string">"104"</span>));</span><br><span class="line"><span class="comment">// &#123; name: 'Luke Lin', number: '104' &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(getPersonInES6(<span class="string">"Luke Lin"</span>, <span class="string">"104"</span>));</span><br><span class="line"><span class="comment">// &#123; name: 'Luke Lin', number: '104' &#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Arrow-Functions-in-ES6-箭頭函式"><a href="#Arrow-Functions-in-ES6-箭頭函式" class="headerlink" title="Arrow Functions in ES6 - 箭頭函式"></a>Arrow Functions in ES6 - 箭頭函式</h2><blockquote>
+<p>箭頭函式可以完美的取代函式表達式，它會在<code>this</code>的內部建立一個新版本的函式。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">([param] [, param]) =&gt; &#123;</span><br><span class="line">   statements</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">param =&gt; expression</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Functions/Arrow_functions" target="_blank" rel="noopener">箭頭函式- JavaScript | MDN</a></p>
+<h2 id="Promises-in-ES6"><a href="#Promises-in-ES6" class="headerlink" title="Promises in ES6 -"></a>Promises in ES6 -</h2><blockquote>
+<p>Promise 物件代表一個即將完成、或失敗的非同步操作，以及它所產生的值。</p>
+</blockquote>
+<p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Guide/Using_promises" target="_blank" rel="noopener">使用 Promise - JavaScript | MDN</a></p>
+<ul>
+<li>Block-Scoped Constructs Let and Const 塊級作用域</li>
+</ul>
+<p>宣告變數的新用法，兩者皆只在該{}區塊內有效。</p>
+<p>let ： 只會對目前的{}區塊內有效，可重複定義。<br>const : 宣告時必須初始化，且不能更改。</p>
+<p><a href="https://eyesofkids.gitbooks.io/javascript-start-from-es6/content/part3/var_const_naming.html" target="_blank" rel="noopener">變數、常數與命名</a></p>
+<ul>
+<li>Classes - 類別</li>
+</ul>
+<blockquote>
+<p>提供一個更簡潔的語法來建立物件和處立繼承。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Polygon</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(height, width) &#123;</span><br><span class="line">    <span class="keyword">this</span>.height = height;</span><br><span class="line">    <span class="keyword">this</span>.width = width;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Classes" target="_blank" rel="noopener">Classes - JavaScript | MDN - Mozilla</a></p>
+<p><a href="https://github.com/jigsawye/javascript#%E5%BB%BA%E6%A7%8B%E5%AD%90" target="_blank" rel="noopener">一份彙整了在 JavasScript 中被普遍使用的風格指南 - 建構子</a></p>
+<ul>
+<li>Modules - 模組</li>
+</ul>
+<blockquote>
+<p>引入跟導出檔案的方法</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;port, getAccounts&#125; <span class="keyword">from</span> ‘<span class="built_in">module</span>’</span><br><span class="line"><span class="built_in">console</span>.log(port) <span class="comment">// 3000</span></span><br></pre></td></tr></table></figure>
+
+<p><a href="https://github.com/jigsawye/javascript#%E6%A8%A1%E7%B5%84" target="_blank" rel="noopener">一份彙整了在 JavasScript 中被普遍使用的風格指南 - 模組</a></p>
+<h1 id="babel"><a href="#babel" class="headerlink" title="babel"></a>babel</h1><p>Babel 是一個轉譯器，主要用於在當前和較舊的瀏覽器或環境中將<code>ECMAScript 2015+</code>代碼轉換為 JavaScript 的向後兼容版本。</p>
+<p><a href="https://babeljs.io/docs/en/" target="_blank" rel="noopener">What is Babel?</a></p>
+<hr>
+<h2 id="指南參考"><a href="#指南參考" class="headerlink" title="指南參考"></a>指南參考</h2><ul>
+<li><a href="https://github.com/jigsawye/javascript" target="_blank" rel="noopener">一份彙整了在 JavasScript 中被普遍使用的風格指南</a></li>
+<li><a href="https://medium.com/@peterchang_82818/es6-10-features-javascript-developer-must-know-98b9782bef44" target="_blank" rel="noopener">[ES6] Javascript 開發者必須知道的 10 個新功能</a></li>
+<li><a href="https://eyesofkids.gitbooks.io/javascript-start-from-es6/content/" target="_blank" rel="noopener">從 ES6 開始的 JavaScript 學習生活</a></li>
+</ul>
+<p> 以上就是這篇的筆記內容</p>
+<h1 id="程式導師實驗計畫第三期"><a href="#程式導師實驗計畫第三期" class="headerlink" title="程式導師實驗計畫第三期"></a><a href="https://github.com/Lidemy/mentor-program-3rd" target="_blank" rel="noopener">程式導師實驗計畫第三期</a></h1><!-- flag of hidden posts -->
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">الرئيسية</a></li>
+         
+          <li><a href="/about/">معلومات عنّي</a></li>
+         
+          <li><a href="/archives/">منشورات</a></li>
+         
+          <li><a href="/search/">بحث</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ECMAScript"><span class="toc-number">1.</span> <span class="toc-text">ECMAScript</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ES5"><span class="toc-number">2.</span> <span class="toc-text">ES5</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#strict-模式"><span class="toc-number">2.1.</span> <span class="toc-text">strict 模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Array"><span class="toc-number">2.2.</span> <span class="toc-text">Array</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ES6"><span class="toc-number">3.</span> <span class="toc-text">ES6</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Default-Parameters-預設參數"><span class="toc-number">3.1.</span> <span class="toc-text">Default Parameters - 預設參數</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Template-Literals-板模字串符"><span class="toc-number">3.2.</span> <span class="toc-text">Template Literals - 板模字串符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Multi-line-Strings-多行字串輸出"><span class="toc-number">3.3.</span> <span class="toc-text">Multi-line Strings - 多行字串輸出</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Destructuring-Assignment-解構賦值"><span class="toc-number">4.</span> <span class="toc-text">Destructuring Assignment - 解構賦值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Enhanced-Object-Literals-物件實字"><span class="toc-number">5.</span> <span class="toc-text">Enhanced Object Literals - 物件實字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Arrow-Functions-in-ES6-箭頭函式"><span class="toc-number">6.</span> <span class="toc-text">Arrow Functions in ES6 - 箭頭函式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Promises-in-ES6"><span class="toc-number">7.</span> <span class="toc-text">Promises in ES6 -</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#babel"><span class="toc-number"></span> <span class="toc-text">babel</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#指南參考"><span class="toc-number">1.</span> <span class="toc-text">指南參考</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#程式導師實驗計畫第三期"><span class="toc-number"></span> <span class="toc-text">程式導師實驗計畫第三期</span></a>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%89%E9%80%B1-%E9%85%8D%E5%82%99%E5%8D%87%E7%B4%9AES6.html" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%89%E9%80%B1-%E9%85%8D%E5%82%99%E5%8D%87%E7%B4%9AES6.html&text=程式導師實驗計畫  [第三週] JavaScript 配備升級-ES6" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%89%E9%80%B1-%E9%85%8D%E5%82%99%E5%8D%87%E7%B4%9AES6.html&title=程式導師實驗計畫  [第三週] JavaScript 配備升級-ES6" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%89%E9%80%B1-%E9%85%8D%E5%82%99%E5%8D%87%E7%B4%9AES6.html&is_video=false&description=程式導師實驗計畫  [第三週] JavaScript 配備升級-ES6" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=程式導師實驗計畫  [第三週] JavaScript 配備升級-ES6&body=Check out this article: https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%89%E9%80%B1-%E9%85%8D%E5%82%99%E5%8D%87%E7%B4%9AES6.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%89%E9%80%B1-%E9%85%8D%E5%82%99%E5%8D%87%E7%B4%9AES6.html&title=程式導師實驗計畫  [第三週] JavaScript 配備升級-ES6" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%89%E9%80%B1-%E9%85%8D%E5%82%99%E5%8D%87%E7%B4%9AES6.html&title=程式導師實驗計畫  [第三週] JavaScript 配備升級-ES6" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%89%E9%80%B1-%E9%85%8D%E5%82%99%E5%8D%87%E7%B4%9AES6.html&title=程式導師實驗計畫  [第三週] JavaScript 配備升級-ES6" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%89%E9%80%B1-%E9%85%8D%E5%82%99%E5%8D%87%E7%B4%9AES6.html&title=程式導師實驗計畫  [第三週] JavaScript 配備升級-ES6" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%89%E9%80%B1-%E9%85%8D%E5%82%99%E5%8D%87%E7%B4%9AES6.html&name=程式導師實驗計畫  [第三週] JavaScript 配備升級-ES6&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%89%E9%80%B1-%E9%85%8D%E5%82%99%E5%8D%87%E7%B4%9AES6.html&t=程式導師實驗計畫  [第三週] JavaScript 配備升級-ES6" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> القائمة</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> المحتويات</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> مشاركة</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> العودة إلى الأعلى</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    حقوق النشر &copy;
+    
+    
+    2016-2022
+    milletbard
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">الرئيسية</a></li><!--
+     --><!--
+       --><li><a href="/about/">معلومات عنّي</a></li><!--
+     --><!--
+       --><li><a href="/archives/">منشورات</a></li><!--
+     --><!--
+       --><li><a href="/search/">بحث</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"انسخ!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "تم النسخ!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang=tw>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="版本控制是什麼以前在做報告時，如果想把每一階段的版本都存下來，就會幫每個階段的檔案取很多不同的名字，這就是一種版本控制 12345畢業專題.doc畢業專題_2.0.doc畢業專題_3.0.doc畢業專題final.doc畢業專題final的final.doc  一旦版本越來越多，就會越來越混亂，這時候我們能夠使用工具來幫我們做版本控制，也就是我們使用Git的原因。 團隊的版本控制版本控制就像遊戲的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="程式導師實驗計畫  [第一週] Git 超新手入門">
+<meta property="og:url" content="https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-Git%E8%B6%85%E6%96%B0%E6%89%8B%E5%85%A5%E9%96%80.html">
+<meta property="og:site_name" content="MILLETBARD">
+<meta property="og:description" content="版本控制是什麼以前在做報告時，如果想把每一階段的版本都存下來，就會幫每個階段的檔案取很多不同的名字，這就是一種版本控制 12345畢業專題.doc畢業專題_2.0.doc畢業專題_3.0.doc畢業專題final.doc畢業專題final的final.doc  一旦版本越來越多，就會越來越混亂，這時候我們能夠使用工具來幫我們做版本控制，也就是我們使用Git的原因。 團隊的版本控制版本控制就像遊戲的">
+<meta property="og:locale" content="tw">
+<meta property="og:image" content="https://milletbard.github.io/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6.png">
+<meta property="og:image" content="https://milletbard.github.io/v1.png">
+<meta property="og:image" content="https://milletbard.github.io/v2.png">
+<meta property="og:image" content="https://milletbard.github.io/%E5%BF%BD%E7%95%A5.png">
+<meta property="og:image" content="https://milletbard.github.io/%E4%BA%82%E7%A2%BC.png">
+<meta property="og:image" content="https://milletbard.github.io/%E9%A0%86%E5%BA%8F.png">
+<meta property="og:image" content="https://milletbard.github.io/%E6%9C%80%E6%96%B0%E7%89%88.png">
+<meta property="og:image" content="https://milletbard.github.io/init.png">
+<meta property="og:image" content="https://milletbard.github.io/status.png">
+<meta property="og:image" content="https://milletbard.github.io/newfile.png">
+<meta property="og:image" content="https://milletbard.github.io/add.png">
+<meta property="og:image" content="https://milletbard.github.io/commit.png">
+<meta property="og:image" content="https://milletbard.github.io/log.png">
+<meta property="og:image" content="https://milletbard.github.io/log-oneline.png">
+<meta property="og:image" content="https://milletbard.github.io/add-gitignore.png">
+<meta property="og:image" content="https://milletbard.github.io/gitignore-insert.png">
+<meta property="og:image" content="https://milletbard.github.io/gitignore-wq.png">
+<meta property="og:image" content="https://milletbard.github.io/gitignore-cat.png">
+<meta property="article:published_time" content="2019-10-29T07:51:41.000Z">
+<meta property="article:modified_time" content="2022-05-28T10:27:45.266Z">
+<meta property="article:author" content="milletbard">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://milletbard.github.io/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>程式導師實驗計畫  [第一週] Git 超新手入門</title><meta name="robots" content="noindex">
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="القائمة"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="القائمة"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="الأعلى" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">الرئيسية</a></li><!--
+     --><!--
+       --><li><a href="/about/">معلومات عنّي</a></li><!--
+     --><!--
+       --><li><a href="/archives/">منشورات</a></li><!--
+     --><!--
+       --><li><a href="/search/">بحث</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="العودة إلى الأعلى" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="مشاركة المنشور" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">المنشور السابق</span>
+      <span id="i-next" class="info" style="display:none;">المنشور التالي</span>
+      <span id="i-top" class="info" style="display:none;">العودة إلى الأعلى</span>
+      <span id="i-share" class="info" style="display:none;">مشاركة المنشور</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-Git%E8%B6%85%E6%96%B0%E6%89%8B%E5%85%A5%E9%96%80.html" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-Git%E8%B6%85%E6%96%B0%E6%89%8B%E5%85%A5%E9%96%80.html&text=程式導師實驗計畫  [第一週] Git 超新手入門" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-Git%E8%B6%85%E6%96%B0%E6%89%8B%E5%85%A5%E9%96%80.html&title=程式導師實驗計畫  [第一週] Git 超新手入門" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-Git%E8%B6%85%E6%96%B0%E6%89%8B%E5%85%A5%E9%96%80.html&is_video=false&description=程式導師實驗計畫  [第一週] Git 超新手入門" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=程式導師實驗計畫  [第一週] Git 超新手入門&body=Check out this article: https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-Git%E8%B6%85%E6%96%B0%E6%89%8B%E5%85%A5%E9%96%80.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-Git%E8%B6%85%E6%96%B0%E6%89%8B%E5%85%A5%E9%96%80.html&title=程式導師實驗計畫  [第一週] Git 超新手入門" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-Git%E8%B6%85%E6%96%B0%E6%89%8B%E5%85%A5%E9%96%80.html&title=程式導師實驗計畫  [第一週] Git 超新手入門" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-Git%E8%B6%85%E6%96%B0%E6%89%8B%E5%85%A5%E9%96%80.html&title=程式導師實驗計畫  [第一週] Git 超新手入門" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-Git%E8%B6%85%E6%96%B0%E6%89%8B%E5%85%A5%E9%96%80.html&title=程式導師實驗計畫  [第一週] Git 超新手入門" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-Git%E8%B6%85%E6%96%B0%E6%89%8B%E5%85%A5%E9%96%80.html&name=程式導師實驗計畫  [第一週] Git 超新手入門&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-Git%E8%B6%85%E6%96%B0%E6%89%8B%E5%85%A5%E9%96%80.html&t=程式導師實驗計畫  [第一週] Git 超新手入門" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#版本控制是什麼"><span class="toc-number">1.</span> <span class="toc-text">版本控制是什麼</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#團隊的版本控制"><span class="toc-number">1.1.</span> <span class="toc-text">團隊的版本控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git實際上幫我們做了什麼"><span class="toc-number">1.2.</span> <span class="toc-text">Git實際上幫我們做了什麼</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#總結"><span class="toc-number">1.3.</span> <span class="toc-text">總結</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安裝Git"><span class="toc-number">2.</span> <span class="toc-text">安裝Git</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Git-常用指令筆記"><span class="toc-number">3.</span> <span class="toc-text">Git 常用指令筆記</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#git-init：初始化數據庫"><span class="toc-number">3.1.</span> <span class="toc-text">git init：初始化數據庫</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-status：查詢當前狀態"><span class="toc-number">3.2.</span> <span class="toc-text">git status：查詢當前狀態</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-add-：將檔案加入到索引"><span class="toc-number">3.3.</span> <span class="toc-text">git add .：將檔案加入到索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-commit-m-quot-修改內容-quot-：將索引檔案變成一個更新commit"><span class="toc-number">3.4.</span> <span class="toc-text">git commit -m &quot;修改內容&quot;：將索引檔案變成一個更新commit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-commit-am-add-amp-commit"><span class="toc-number">3.5.</span> <span class="toc-text">git commit -am : add &amp; commit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-log-觀察commit歷史紀錄"><span class="toc-number">3.6.</span> <span class="toc-text">git log : 觀察commit歷史紀錄</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-branch-使用分支"><span class="toc-number">3.7.</span> <span class="toc-text">git branch : 使用分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-checkout-版本切換"><span class="toc-number">3.8.</span> <span class="toc-text">git checkout : 版本切換</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gitignore-讓-git-忽略不想要被版本控制的檔案"><span class="toc-number">3.9.</span> <span class="toc-text">.gitignore : 讓 git 忽略不想要被版本控制的檔案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#總結-1"><span class="toc-number">3.10.</span> <span class="toc-text">總結</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#為你自己學-Git"><span class="toc-number">3.11.</span> <span class="toc-text">為你自己學 Git</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#程式導師實驗計畫第三期"><span class="toc-number">4.</span> <span class="toc-text">程式導師實驗計畫第三期</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        程式導師實驗計畫  [第一週] Git 超新手入門
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">milletbard</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-10-29T07:51:41.000Z" itemprop="datePublished">2019-10-29</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="版本控制是什麼"><a href="#版本控制是什麼" class="headerlink" title="版本控制是什麼"></a>版本控制是什麼</h1><p>以前在做報告時，如果想把每一階段的版本都存下來，就會幫每個階段的檔案取很多不同的名字，這就是一種版本控制</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">畢業專題.doc</span><br><span class="line">畢業專題_2.0.doc</span><br><span class="line">畢業專題_3.0.doc</span><br><span class="line">畢業專題final.doc</span><br><span class="line">畢業專題final的final.doc</span><br></pre></td></tr></table></figure>
+
+<p>一旦版本越來越多，就會越來越混亂，這時候我們能夠使用工具來幫我們做版本控制，也就是我們使用<code>Git</code>的原因。</p>
+<h2 id="團隊的版本控制"><a href="#團隊的版本控制" class="headerlink" title="團隊的版本控制"></a>團隊的版本控制</h2><p>版本控制就像遊戲的存檔，如果今天是存檔到第三關，大家都能從第三關開始玩，分別進行<code>不同</code>的路線，最後在把各自的紀錄合在一起。</p>
+<p>假設今天從穩定版進行開發，分別開發兩個不同的功能，上線的穩定版的產品臨時有 bug 需要修復，又從穩定版進行<code>bug fix</code>，<code>Git</code>可以讓這三個路線各自完成之後，再融合進化成一個新的穩定版。</p>
+<p><img src="%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6.png" alt=""></p>
+<h2 id="Git實際上幫我們做了什麼"><a href="#Git實際上幫我們做了什麼" class="headerlink" title="Git實際上幫我們做了什麼"></a><code>Git</code>實際上幫我們做了什麼</h2><p>假設今天有一個版本叫做<code>v1</code></p>
+<p><img src="v1.png" alt=""></p>
+<p>我們對<code>v1</code>做了一些更動，git 就幫我們新增一份檔案存起來，叫做<code>v2</code></p>
+<p><img src="v2.png" alt=""></p>
+<p>那如果有檔案不想要做版本控制，就把該檔案移出版本控制的資料夾。<br>例如不想將<code>test</code>檔案加入版控，就將它移出資料夾。</p>
+<p><img src="%E5%BF%BD%E7%95%A5.png" alt=""></p>
+<p>當我們在多人協作的時候會有同時以同個版本進行開發的情況，假設今天兩個人都對<code>v2</code>版進行開發，要怎麼保證兩人的版本都不會衝突？</p>
+<p>因此版號就不能用<code>v1</code>、<code>v2</code>這樣的流水號，就變成這樣：</p>
+<p><code>v1</code>、<code>v2</code>都變成了一段亂碼<br><img src="%E4%BA%82%E7%A2%BC.png" alt=""></p>
+<p>但是這樣就會遇到一些問題，都是亂碼的話要怎麼知道這些版本的先後順序？</p>
+<p>所以就開一個檔案來存版號的順序</p>
+<p><img src="%E9%A0%86%E5%BA%8F.png" alt=""></p>
+<p> 接下來還會有一個問題，隨時都想知道最新的版本是哪個該怎麼辦，所以就再開一個檔案裡面永遠都會放最新的版本</p>
+<p><img src="%E6%9C%80%E6%96%B0%E7%89%88.png" alt=""></p>
+<p>這些就是<code>Git</code>再幫我們做的事情。</p>
+<h2 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h2><ol>
+<li>需要新版本：開一個資料夾</li>
+<li>不想加入版本控制：不要加入資料夾</li>
+<li>避免版本號衝突：用看似亂碼的東西當作資料夾名稱</li>
+<li>知道最新版本：用一個檔案來存</li>
+</ol>
+<h1 id="安裝Git"><a href="#安裝Git" class="headerlink" title="安裝Git"></a>安裝<code>Git</code></h1><ul>
+<li><code>mac</code>版本可以照官方文件完成安裝: <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git" target="_blank" rel="noopener">Getting Started - Installing Git</a></li>
+</ul>
+<h1 id="Git-常用指令筆記"><a href="#Git-常用指令筆記" class="headerlink" title="Git 常用指令筆記"></a>Git 常用指令筆記</h1><h2 id="git-init：初始化數據庫"><a href="#git-init：初始化數據庫" class="headerlink" title="git init：初始化數據庫"></a><code>git init</code>：初始化數據庫</h2><p>當下了這個指令之後，<code>Git</code>就會知道我們要對這個檔案夾做版本控制，並初始化這個資料夾的數據庫，接下來就可以針對這個檔案夾做更多<code>Git</code>的指令。</p>
+<p><img src="init.png" alt=""></p>
+<p>在桌面開一個測試用的檔案夾<code>folder</code>並執行<code>git init</code>，會發現<code>folder</code>資料夾底下多一個<code>.git</code>的隱藏資料夾</p>
+<p>mac 的預設設定是看不到隱藏檔案的。<a href="https://macuknow.com/2017/08/26/1428/" target="_blank" rel="noopener">三招讓 Mac 顯示出隱藏檔案</a></p>
+<h2 id="git-status：查詢當前狀態"><a href="#git-status：查詢當前狀態" class="headerlink" title="git status：查詢當前狀態"></a><code>git status</code>：查詢當前狀態</h2><p>就會跟你說目前版本的狀態，有沒有什麼更動</p>
+<p><img src="status.png" alt=""></p>
+<h2 id="git-add-：將檔案加入到索引"><a href="#git-add-：將檔案加入到索引" class="headerlink" title="git add .：將檔案加入到索引"></a><code>git add .</code>：將檔案加入到索引</h2><p>在<code>folder</code>資料夾底下新增一個<code>newfile</code>檔案，使用<code>git status</code>查看狀態，會看到有新的變更。</p>
+<p><img src="newfile.png" alt=""></p>
+<p> 使用<code>git add .</code>將檔案加入到索引，再用<code>git status</code>，查看狀態，會看到紅字變成綠字了，代表更動內容已經加入版本控制</p>
+<p><img src="add.png" alt=""></p>
+<p>如果反悔了想要取消某個檔案的的版本控制</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rm --cached &lt;file&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="git-commit-m-quot-修改內容-quot-：將索引檔案變成一個更新commit"><a href="#git-commit-m-quot-修改內容-quot-：將索引檔案變成一個更新commit" class="headerlink" title="git commit -m &quot;修改內容&quot;：將索引檔案變成一個更新commit"></a><code>git commit -m &quot;修改內容&quot;</code>：將索引檔案變成一個更新<code>commit</code></h2><p>當我們將檔案加入到版本控制之後，就可以提交這次的進度變成一個<code>commit</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &lt;commit message&gt; # 提交訊息</span><br></pre></td></tr></table></figure>
+
+<p>這邊的<code>commit message</code>我就寫<code>add newFile</code></p>
+<p><img src="commit.png" alt=""></p>
+<h2 id="git-commit-am-add-amp-commit"><a href="#git-commit-am-add-amp-commit" class="headerlink" title="git commit -am : add &amp; commit"></a><code>git commit -am</code> : add &amp; commit</h2><p> 提交 commit 之前需要先 add，也可以合在一起寫</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -am "commit message"</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，<code>-am</code>只適用已修改或刪除的檔案，如果是<strong>新增加</strong>的檔案的話，還是需要先執行<code>add .</code>再提交<code>commit</code>。</p>
+<p>官方文件說明：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-a</span><br><span class="line">--all</span><br><span class="line">Tell the command to automatically stage files that have been modified and deleted,</span><br><span class="line">but new files you have not told Git about are not affected.</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>可以參考文件 <a href="https://git-scm.com/docs/git-commit#Documentation/git-commit.txt--a" target="_blank" rel="noopener">Git 官方文件</a></p>
+</blockquote>
+<h2 id="git-log-觀察commit歷史紀錄"><a href="#git-log-觀察commit歷史紀錄" class="headerlink" title="git log : 觀察commit歷史紀錄"></a><code>git log</code> : 觀察<code>commit</code>歷史紀錄</h2><p>當我們有多筆 commit 可以透過<code>git commit</code>來看紀錄</p>
+<p><img src="log.png" alt=""></p>
+<p>可以看到的資訊：</p>
+<ol>
+<li>commit : 版本號</li>
+<li>Author : 提交的作者是誰</li>
+<li>Date : 什麼時候提交的<code>commit</code></li>
+<li>提交的內容</li>
+</ol>
+<p>也有額外的參數可以使用，能夠看到不同的格式。</p>
+<ul>
+<li><code>git log --oneline</code> : 可以看到版本號簡寫成了完整版本號的前 7 碼，以及更改的內容。</li>
+</ul>
+<p><img src="log-oneline.png" alt=""></p>
+<h2 id="git-branch-使用分支"><a href="#git-branch-使用分支" class="headerlink" title="git branch : 使用分支"></a><code>git branch</code> : 使用分支</h2><ul>
+<li>查看分支</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git  branch</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>新增分支</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch &lt;分支名稱&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>修改分支名稱</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch &lt;分支名稱&gt;&gt; &lt;新的分支名稱&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>刪除分支</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d &lt;分支名稱&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如果要刪除的分支還沒有完成合併，git 會有提示，例如:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git branch -d 分支名</span></span><br><span class="line">error: The branch 'feature' is not fully merged.</span><br><span class="line">If you are sure you want to delete it, run 'git branch -D 分支名'.</span><br></pre></td></tr></table></figure>
+
+<p>再執行<code>git branch -D 分支名</code>就可以成功刪除。</p>
+<h2 id="git-checkout-版本切換"><a href="#git-checkout-版本切換" class="headerlink" title="git checkout : 版本切換"></a><code>git checkout</code> : 版本切換</h2><ul>
+<li>切換分支</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout &lt;分支名&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果想新創建一個名為<code>feature</code>的分支並且切換過去。</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b feature</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>當完成該功能想要回到最新的<code>mster</code>版本。</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br></pre></td></tr></table></figure>
+
+<h2 id="gitignore-讓-git-忽略不想要被版本控制的檔案"><a href="#gitignore-讓-git-忽略不想要被版本控制的檔案" class="headerlink" title=".gitignore : 讓 git 忽略不想要被版本控制的檔案"></a><code>.gitignore</code> : 讓 git 忽略不想要被版本控制的檔案</h2><p>每次要提交<code>commit</code>前都要決定哪些檔案要<code>add</code>到版本控制的暫存區，但是如果執行<code>git add .</code>又會將不想被版本控制的檔案一併加入到版本控制中，這時候就可以新增一個.gitignore 檔來忽略不想被版本控制的檔案。</p>
+<ul>
+<li>新增.gitignore 檔</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch .gitignore</span><br></pre></td></tr></table></figure>
+
+<p><img src="add-gitignore.png" alt=""></p>
+<ul>
+<li>使用<code>vim</code>進入<code>.gitignore</code>中</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim .gitignore</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>按<code>i</code>進入編輯模式，並寫上想忽略的檔案名稱</li>
+</ul>
+<p><img src="gitignore-insert.png" alt=""></p>
+<ul>
+<li><code>:wq</code>儲存並離開。</li>
+</ul>
+<p><img src="gitignore-wq.png" alt=""></p>
+<ul>
+<li>使用<code>cat .gitignore</code>查看內容有沒有新增。</li>
+</ul>
+<p><img src="gitignore-cat.png" alt=""></p>
+<p>接著在<code>vim</code>文字編輯器中按下<code>i</code>進入編輯模式，寫入想要被忽略的檔案名稱，按<code>ESC</code>退出編輯模式，輸入<code>:wq</code>儲存並離開。</p>
+<hr>
+<h2 id="總結-1"><a href="#總結-1" class="headerlink" title="總結"></a>總結</h2><ol>
+<li><code>git init</code> : 初始化數據庫</li>
+<li><code>git status</code> : 查看當前狀態</li>
+<li><code>git add .</code> : 將所有檔案加進索引(不包含被忽略的檔案)</li>
+<li><code>git commit -m &quot;commit message&quot;</code> : 提交<code>commit</code></li>
+<li><code>git checkout &lt;版本&gt;</code></li>
+</ol>
+<h2 id="為你自己學-Git"><a href="#為你自己學-Git" class="headerlink" title="為你自己學 Git"></a><a href="https://gitbook.tw/" target="_blank" rel="noopener">為你自己學 Git</a></h2><p>受益良多的大補帖，推推！！</p>
+<p> 以上就是這篇的筆記內容</p>
+<h1 id="程式導師實驗計畫第三期"><a href="#程式導師實驗計畫第三期" class="headerlink" title="程式導師實驗計畫第三期"></a><a href="https://github.com/Lidemy/mentor-program-3rd" target="_blank" rel="noopener">程式導師實驗計畫第三期</a></h1><!-- flag of hidden posts -->
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">الرئيسية</a></li>
+         
+          <li><a href="/about/">معلومات عنّي</a></li>
+         
+          <li><a href="/archives/">منشورات</a></li>
+         
+          <li><a href="/search/">بحث</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#版本控制是什麼"><span class="toc-number">1.</span> <span class="toc-text">版本控制是什麼</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#團隊的版本控制"><span class="toc-number">1.1.</span> <span class="toc-text">團隊的版本控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git實際上幫我們做了什麼"><span class="toc-number">1.2.</span> <span class="toc-text">Git實際上幫我們做了什麼</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#總結"><span class="toc-number">1.3.</span> <span class="toc-text">總結</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安裝Git"><span class="toc-number">2.</span> <span class="toc-text">安裝Git</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Git-常用指令筆記"><span class="toc-number">3.</span> <span class="toc-text">Git 常用指令筆記</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#git-init：初始化數據庫"><span class="toc-number">3.1.</span> <span class="toc-text">git init：初始化數據庫</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-status：查詢當前狀態"><span class="toc-number">3.2.</span> <span class="toc-text">git status：查詢當前狀態</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-add-：將檔案加入到索引"><span class="toc-number">3.3.</span> <span class="toc-text">git add .：將檔案加入到索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-commit-m-quot-修改內容-quot-：將索引檔案變成一個更新commit"><span class="toc-number">3.4.</span> <span class="toc-text">git commit -m &quot;修改內容&quot;：將索引檔案變成一個更新commit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-commit-am-add-amp-commit"><span class="toc-number">3.5.</span> <span class="toc-text">git commit -am : add &amp; commit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-log-觀察commit歷史紀錄"><span class="toc-number">3.6.</span> <span class="toc-text">git log : 觀察commit歷史紀錄</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-branch-使用分支"><span class="toc-number">3.7.</span> <span class="toc-text">git branch : 使用分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-checkout-版本切換"><span class="toc-number">3.8.</span> <span class="toc-text">git checkout : 版本切換</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gitignore-讓-git-忽略不想要被版本控制的檔案"><span class="toc-number">3.9.</span> <span class="toc-text">.gitignore : 讓 git 忽略不想要被版本控制的檔案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#總結-1"><span class="toc-number">3.10.</span> <span class="toc-text">總結</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#為你自己學-Git"><span class="toc-number">3.11.</span> <span class="toc-text">為你自己學 Git</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#程式導師實驗計畫第三期"><span class="toc-number">4.</span> <span class="toc-text">程式導師實驗計畫第三期</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-Git%E8%B6%85%E6%96%B0%E6%89%8B%E5%85%A5%E9%96%80.html" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-Git%E8%B6%85%E6%96%B0%E6%89%8B%E5%85%A5%E9%96%80.html&text=程式導師實驗計畫  [第一週] Git 超新手入門" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-Git%E8%B6%85%E6%96%B0%E6%89%8B%E5%85%A5%E9%96%80.html&title=程式導師實驗計畫  [第一週] Git 超新手入門" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-Git%E8%B6%85%E6%96%B0%E6%89%8B%E5%85%A5%E9%96%80.html&is_video=false&description=程式導師實驗計畫  [第一週] Git 超新手入門" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=程式導師實驗計畫  [第一週] Git 超新手入門&body=Check out this article: https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-Git%E8%B6%85%E6%96%B0%E6%89%8B%E5%85%A5%E9%96%80.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-Git%E8%B6%85%E6%96%B0%E6%89%8B%E5%85%A5%E9%96%80.html&title=程式導師實驗計畫  [第一週] Git 超新手入門" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-Git%E8%B6%85%E6%96%B0%E6%89%8B%E5%85%A5%E9%96%80.html&title=程式導師實驗計畫  [第一週] Git 超新手入門" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-Git%E8%B6%85%E6%96%B0%E6%89%8B%E5%85%A5%E9%96%80.html&title=程式導師實驗計畫  [第一週] Git 超新手入門" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-Git%E8%B6%85%E6%96%B0%E6%89%8B%E5%85%A5%E9%96%80.html&title=程式導師實驗計畫  [第一週] Git 超新手入門" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-Git%E8%B6%85%E6%96%B0%E6%89%8B%E5%85%A5%E9%96%80.html&name=程式導師實驗計畫  [第一週] Git 超新手入門&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-Git%E8%B6%85%E6%96%B0%E6%89%8B%E5%85%A5%E9%96%80.html&t=程式導師實驗計畫  [第一週] Git 超新手入門" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> القائمة</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> المحتويات</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> مشاركة</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> العودة إلى الأعلى</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    حقوق النشر &copy;
+    
+    
+    2016-2022
+    milletbard
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">الرئيسية</a></li><!--
+     --><!--
+       --><li><a href="/about/">معلومات عنّي</a></li><!--
+     --><!--
+       --><li><a href="/archives/">منشورات</a></li><!--
+     --><!--
+       --><li><a href="/search/">بحث</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"انسخ!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "تم النسخ!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang=tw>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="理解 shell script有一種東西叫做 shell script，可以用 command line 指令以及一些語法寫成一個腳本，執行之後可以很方便地做很多事。 前面整理了 程式導師實驗計畫 [第一週] Command-line-入門筆記，理解了可以使用 CLI(Command Line Interface) 的方式來操控電腦，那如果有一些指令是固定要用到的。 就像提交 commit 或是部">
+<meta property="og:type" content="article">
+<meta property="og:title" content="程式導師實驗計畫  [第一週] shell script 程式化腳本">
+<meta property="og:url" content="https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-shell-script.html">
+<meta property="og:site_name" content="MILLETBARD">
+<meta property="og:description" content="理解 shell script有一種東西叫做 shell script，可以用 command line 指令以及一些語法寫成一個腳本，執行之後可以很方便地做很多事。 前面整理了 程式導師實驗計畫 [第一週] Command-line-入門筆記，理解了可以使用 CLI(Command Line Interface) 的方式來操控電腦，那如果有一些指令是固定要用到的。 就像提交 commit 或是部">
+<meta property="og:locale" content="tw">
+<meta property="og:image" content="https://milletbard.github.io/%E8%AE%8A%E6%95%B8.png">
+<meta property="og:image" content="https://milletbard.github.io/%E8%AE%8A%E6%95%B8%E5%AE%9A%E7%BE%A9%E8%AE%8A%E6%95%B8.png">
+<meta property="og:image" content="https://milletbard.github.io/github-api.png">
+<meta property="og:image" content="https://milletbard.github.io/github-user.png">
+<meta property="og:image" content="https://milletbard.github.io/anser.png">
+<meta property="article:published_time" content="2019-10-31T14:40:05.000Z">
+<meta property="article:modified_time" content="2022-05-28T10:27:45.278Z">
+<meta property="article:author" content="milletbard">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://milletbard.github.io/%E8%AE%8A%E6%95%B8.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>程式導師實驗計畫  [第一週] shell script 程式化腳本</title><meta name="robots" content="noindex">
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="القائمة"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="القائمة"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="الأعلى" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">الرئيسية</a></li><!--
+     --><!--
+       --><li><a href="/about/">معلومات عنّي</a></li><!--
+     --><!--
+       --><li><a href="/archives/">منشورات</a></li><!--
+     --><!--
+       --><li><a href="/search/">بحث</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="العودة إلى الأعلى" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="مشاركة المنشور" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">المنشور السابق</span>
+      <span id="i-next" class="info" style="display:none;">المنشور التالي</span>
+      <span id="i-top" class="info" style="display:none;">العودة إلى الأعلى</span>
+      <span id="i-share" class="info" style="display:none;">مشاركة المنشور</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-shell-script.html" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-shell-script.html&text=程式導師實驗計畫  [第一週] shell script 程式化腳本" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-shell-script.html&title=程式導師實驗計畫  [第一週] shell script 程式化腳本" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-shell-script.html&is_video=false&description=程式導師實驗計畫  [第一週] shell script 程式化腳本" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=程式導師實驗計畫  [第一週] shell script 程式化腳本&body=Check out this article: https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-shell-script.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-shell-script.html&title=程式導師實驗計畫  [第一週] shell script 程式化腳本" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-shell-script.html&title=程式導師實驗計畫  [第一週] shell script 程式化腳本" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-shell-script.html&title=程式導師實驗計畫  [第一週] shell script 程式化腳本" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-shell-script.html&title=程式導師實驗計畫  [第一週] shell script 程式化腳本" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-shell-script.html&name=程式導師實驗計畫  [第一週] shell script 程式化腳本&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-shell-script.html&t=程式導師實驗計畫  [第一週] shell script 程式化腳本" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#理解-shell-script"><span class="toc-number">1.</span> <span class="toc-text">理解 shell script</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#練習-shell-script"><span class="toc-number">2.</span> <span class="toc-text">練習 shell script</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#練習一"><span class="toc-number">2.1.</span> <span class="toc-text">練習一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#練習二"><span class="toc-number">2.2.</span> <span class="toc-text">練習二</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#練習三"><span class="toc-number">2.3.</span> <span class="toc-text">練習三</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#語法整理"><span class="toc-number">3.</span> <span class="toc-text">語法整理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#變數的使用"><span class="toc-number">3.1.</span> <span class="toc-text">變數的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#變數定義變數"><span class="toc-number">3.2.</span> <span class="toc-text">變數定義變數</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#挑戰題"><span class="toc-number">4.</span> <span class="toc-text">挑戰題</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#檢視-JSON-工具-jq"><span class="toc-number">4.1.</span> <span class="toc-text">檢視 JSON 工具 - jq</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用-curl取得資料並透過-jq-顯示出指定的資料"><span class="toc-number">4.2.</span> <span class="toc-text">使用 curl取得資料並透過 jq 顯示出指定的資料</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#程式導師實驗計畫第三期"><span class="toc-number"></span> <span class="toc-text">程式導師實驗計畫第三期</span></a>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        程式導師實驗計畫  [第一週] shell script 程式化腳本
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">milletbard</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-10-31T14:40:05.000Z" itemprop="datePublished">2019-10-31</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="理解-shell-script"><a href="#理解-shell-script" class="headerlink" title="理解 shell script"></a>理解 shell script</h2><p>有一種東西叫做 shell script，可以用 command line 指令以及一些語法寫成一個腳本，執行之後可以很方便地做很多事。</p>
+<p>前面整理了 <a href="https://milletbard.github.io/2019/10/29/程式導師實驗計畫Command-line-入門筆記/">程式導師實驗計畫 [第一週] Command-line-入門筆記</a>，理解了可以使用 CLI(Command Line Interface) 的方式來操控電腦，那如果有一些指令是固定要用到的。</p>
+<p>就像提交 commit 或是部署程式，每次都要一行一行打，如果我很懶想要有個程式幫我處理這些固定的指令可以嗎？ 可以，shell script 就可以做到。</p>
+<p>第一次接觸到 shell script 是在部署 vue 的程式到 GitHub 的時候，vue 的 <a href="https://cli.vuejs.org/zh/guide/deployment.html#github-pages" target="_blank" rel="noopener">官方文件</a> 告訴你</p>
+<ul>
+<li>在項目目錄下，創建內容如下的 deploy.sh(可以適當地取消註釋)並運行它以進行部署：</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 當發生錯誤時停止腳本</span></span><br><span class="line"><span class="built_in">set</span> -e</span><br><span class="line"></span><br><span class="line"><span class="comment"># 建構</span></span><br><span class="line">npm run build</span><br><span class="line"></span><br><span class="line"><span class="comment"># cd 到建構輸出的目录下</span></span><br><span class="line"><span class="built_in">cd</span> dist</span><br><span class="line"></span><br><span class="line"><span class="comment"># 部署到自定義域名</span></span><br><span class="line"><span class="comment"># echo 'www.example.com' &gt; CNAME</span></span><br><span class="line"></span><br><span class="line">git init</span><br><span class="line">git add -A</span><br><span class="line">git commit -m <span class="string">'deploy'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 部署到 https://&lt;USERNAME&gt;.github.io</span></span><br><span class="line"><span class="comment"># git push -f git@github.com:&lt;USERNAME&gt;/&lt;USERNAME&gt;.github.io.git master</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 部署到 https://&lt;USERNAME&gt;.github.io/&lt;REPO&gt;</span></span><br><span class="line"><span class="comment"># git push -f git@github.com:&lt;USERNAME&gt;/&lt;REPO&gt;.git master:gh-pages</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> -</span><br></pre></td></tr></table></figure>
+
+<p>那時候根本不知道這段在寫什麼，只知道照個做可以讓我的程式部署到 GitHub 上面去ＸＤ</p>
+<p>也就是說，其實 shell script 就是在幫我們把想打的指令存下來，如果你執行它，它就幫你把你存在裡面的指令一行一行打出來，完成你想做的事情。</p>
+<hr>
+<h2 id="練習-shell-script"><a href="#練習-shell-script" class="headerlink" title="練習 shell script"></a>練習 shell script</h2><h3 id="練習一"><a href="#練習一" class="headerlink" title="練習一"></a>練習一</h3><p>寫一個 shell script，檔名叫<code>test.sh</code>，執行<code>test.sh</code>可以傳入一個 number，</p>
+<hr>
+<p>接著印出<code>echo {number}</code>。</p>
+<p>運用之前學到東西，在終端機進行。</p>
+<p>使用<code>touch</code>新增檔案</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch test.sh</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>vim</code>文字編輯器進入編輯模式</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim echo.sh</span><br></pre></td></tr></table></figure>
+
+<p>新增內容</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo "echo $1"</span><br></pre></td></tr></table></figure>
+
+<p>執行 test.sh 檔案，嘗試印出 5</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh ./test.sh 5</span><br></pre></td></tr></table></figure>
+
+<h3 id="練習二"><a href="#練習二" class="headerlink" title="練習二"></a>練習二</h3><p>寫一個 shell script，名為 abc.sh， abc.sh 可以傳入一個數字 number，產生名為 {number}.js 的檔案。</p>
+<hr>
+<p>新增 abc.sh 檔案，新增內容</p>
+<p>abc.sh</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch "$1.js"</span><br></pre></td></tr></table></figure>
+
+<p>執行 abc.sh</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh ./abc.sh</span><br></pre></td></tr></table></figure>
+
+<h3 id="練習三"><a href="#練習三" class="headerlink" title="練習三"></a>練習三</h3><p>寫一個 shell script，名為 num.sh， num.sh 可以傳入一個數字 n，然後會產生 1~n 個檔案，檔名是 {number}.js。</p>
+<hr>
+<p>新增 abc.sh 檔案，新增內容</p>
+<p>num.sh</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for i in `seq 1 $1`; do touch $i.js; done;</span><br></pre></td></tr></table></figure>
+
+<p>執行 num.sh</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh ./num.sh</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="語法整理"><a href="#語法整理" class="headerlink" title="語法整理"></a>語法整理</h2><p>練習後來重新整理一下 shell script 的語法</p>
+<p>在 shell script 中，變數都視為字串，不用定義變數類型。</p>
+<h3 id="變數的使用"><a href="#變數的使用" class="headerlink" title="變數的使用"></a>變數的使用</h3><p>shell script 對單引號視為字串，對雙引號視為變數。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">name=lukelin</span><br><span class="line">echo "$name" # 雙引號</span><br><span class="line"><span class="meta">#</span><span class="bash"> output : lukelin</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="%E8%AE%8A%E6%95%B8.png" alt=""></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">name=lukelin</span><br><span class="line">echo '$name' # 單引號</span><br><span class="line"><span class="meta">#</span><span class="bash"> output : 視 <span class="string">'$name'</span> 為文字 ，印出 <span class="string">'$name'</span></span></span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，<code>=</code>等號的兩側不能有空白，不然就會壞掉。</p>
+<h3 id="變數定義變數"><a href="#變數定義變數" class="headerlink" title="變數定義變數"></a>變數定義變數</h3><p>可以把用指令回傳回來的資料再定義成一個變數，需要用 ` 關鍵字把指令包起來。</p>
+<p>例如把<code>curl</code>撈出來的東西定義給<code>data</code>這個變數</p>
+<p><img src="%E8%AE%8A%E6%95%B8%E5%AE%9A%E7%BE%A9%E8%AE%8A%E6%95%B8.png" alt=""></p>
+<h2 id="挑戰題"><a href="#挑戰題" class="headerlink" title="挑戰題"></a>挑戰題</h2><p>請寫一個 github.sh，可以傳入一個參數 username，執行之後就會輸出這個 GitHub 使用者的暱稱、介紹、地點跟個人網站。</p>
+<hr>
+<p>要完成這題，要透過一個 username 去撈 github 的資料，所以需要先去看一下 <a href="https://developer.github.com/v3/" target="_blank" rel="noopener">GitHub Developer<br>Docs </a></p>
+<p>可以看到機器的位置<code>https://api.github.com</code>以及如果要撈使用者資訊需要帶的參數。</p>
+<p><img src="github-api.png" alt=""></p>
+<p><img src="github-user.png" alt=""></p>
+<p>所以需要用的 API 變成</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://api.github.com/users/username</span><br></pre></td></tr></table></figure>
+
+<p>再來是需用到之前學到的 <a href="https://milletbard.github.io/2019/10/29/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%ABCommand-line-%E5%85%A5%E9%96%80%E7%AD%86%E8%A8%98/#curl-%E7%99%BC%E9%80%81-request">curl : 發送 request</a></p>
+<p>所以 github.sh 的內容就可以是這樣</p>
+<p>github.sh username &lt;= 帶入想查詢的 github 帳號</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo curl -X GET https://api.github.com/users/$1</span><br></pre></td></tr></table></figure>
+
+<h3 id="檢視-JSON-工具-jq"><a href="#檢視-JSON-工具-jq" class="headerlink" title="檢視 JSON 工具 - jq"></a>檢視 JSON 工具 - <a href="https://stedolan.github.io/jq/" target="_blank" rel="noopener">jq</a></h3><p>jq 可以讓 JSON 的格式排成較易閱讀的方式來觀看</p>
+<p>官方安裝 : <a href="https://stedolan.github.io/jq/download/" target="_blank" rel="noopener">https://stedolan.github.io/jq/download/</a></p>
+<ul>
+<li><p>OS X</p>
+<ul>
+<li>Use Homebrew to install jq 1.5 with brew install jq.</li>
+</ul>
+</li>
+</ul>
+<h3 id="使用-curl取得資料並透過-jq-顯示出指定的資料"><a href="#使用-curl取得資料並透過-jq-顯示出指定的資料" class="headerlink" title="使用 curl取得資料並透過 jq 顯示出指定的資料"></a>使用 <code>curl</code>取得資料並透過 jq 顯示出指定的資料</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">data=`curl -X GET https://api.github.com/users/$1 | jq '.'`</span><br><span class="line">echo $data | jq '.name'</span><br><span class="line">echo $data | jq '.bio'</span><br><span class="line">echo $data | jq '.location'</span><br><span class="line">echo $data | jq '.blog'</span><br></pre></td></tr></table></figure>
+
+<p>再執行 <code>sh github.sh milletbard</code>，就可以看到這樣的結果。</p>
+<p><img src="anser.png" alt=""></p>
+<p> 以上就是這篇的筆記內容</p>
+<h1 id="程式導師實驗計畫第三期"><a href="#程式導師實驗計畫第三期" class="headerlink" title="程式導師實驗計畫第三期"></a><a href="https://github.com/Lidemy/mentor-program-3rd" target="_blank" rel="noopener">程式導師實驗計畫第三期</a></h1><!-- flag of hidden posts -->
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">الرئيسية</a></li>
+         
+          <li><a href="/about/">معلومات عنّي</a></li>
+         
+          <li><a href="/archives/">منشورات</a></li>
+         
+          <li><a href="/search/">بحث</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#理解-shell-script"><span class="toc-number">1.</span> <span class="toc-text">理解 shell script</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#練習-shell-script"><span class="toc-number">2.</span> <span class="toc-text">練習 shell script</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#練習一"><span class="toc-number">2.1.</span> <span class="toc-text">練習一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#練習二"><span class="toc-number">2.2.</span> <span class="toc-text">練習二</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#練習三"><span class="toc-number">2.3.</span> <span class="toc-text">練習三</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#語法整理"><span class="toc-number">3.</span> <span class="toc-text">語法整理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#變數的使用"><span class="toc-number">3.1.</span> <span class="toc-text">變數的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#變數定義變數"><span class="toc-number">3.2.</span> <span class="toc-text">變數定義變數</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#挑戰題"><span class="toc-number">4.</span> <span class="toc-text">挑戰題</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#檢視-JSON-工具-jq"><span class="toc-number">4.1.</span> <span class="toc-text">檢視 JSON 工具 - jq</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用-curl取得資料並透過-jq-顯示出指定的資料"><span class="toc-number">4.2.</span> <span class="toc-text">使用 curl取得資料並透過 jq 顯示出指定的資料</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#程式導師實驗計畫第三期"><span class="toc-number"></span> <span class="toc-text">程式導師實驗計畫第三期</span></a>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-shell-script.html" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-shell-script.html&text=程式導師實驗計畫  [第一週] shell script 程式化腳本" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-shell-script.html&title=程式導師實驗計畫  [第一週] shell script 程式化腳本" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-shell-script.html&is_video=false&description=程式導師實驗計畫  [第一週] shell script 程式化腳本" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=程式導師實驗計畫  [第一週] shell script 程式化腳本&body=Check out this article: https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-shell-script.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-shell-script.html&title=程式導師實驗計畫  [第一週] shell script 程式化腳本" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-shell-script.html&title=程式導師實驗計畫  [第一週] shell script 程式化腳本" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-shell-script.html&title=程式導師實驗計畫  [第一週] shell script 程式化腳本" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-shell-script.html&title=程式導師實驗計畫  [第一週] shell script 程式化腳本" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-shell-script.html&name=程式導師實驗計畫  [第一週] shell script 程式化腳本&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%80%B1-shell-script.html&t=程式導師實驗計畫  [第一週] shell script 程式化腳本" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> القائمة</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> المحتويات</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> مشاركة</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> العودة إلى الأعلى</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    حقوق النشر &copy;
+    
+    
+    2016-2022
+    milletbard
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">الرئيسية</a></li><!--
+     --><!--
+       --><li><a href="/about/">معلومات عنّي</a></li><!--
+     --><!--
+       --><li><a href="/archives/">منشورات</a></li><!--
+     --><!--
+       --><li><a href="/search/">بحث</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"انسخ!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "تم النسخ!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
