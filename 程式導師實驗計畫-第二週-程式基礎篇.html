@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang=tw>
+<html lang=zh>
 <head>
     <!-- so meta -->
     <meta charset="utf-8">
@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%BA%8C%E9%80%B1-%E7%A8%8B%E5%BC%8F%E5%9F%BA%E7%A4%8E%E7%AF%87.html">
 <meta property="og:site_name" content="MILLETBARD">
 <meta property="og:description" content="該如何執行 JavaScript透過 Node.js 運行 JavaScript官方安裝：https:&#x2F;&#x2F;nodejs.org&#x2F;en&#x2F; 安裝 Node.js 讓 JavaScript 跑跑跑起來node.js 並不是一種程式語言，而是一個運行環境，它可以讓 JavaScript 在終端機上直接就給它跑起來 所以如果要運行一隻 test.js 檔 test.js 12const test &#x3D; &quot;跑">
-<meta property="og:locale" content="tw">
+<meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://milletbard.github.io/node.png">
 <meta property="og:image" content="https://milletbard.github.io/vscode.png">
 <meta property="article:published_time" content="2019-11-01T05:37:03.000Z">
@@ -63,13 +63,13 @@
     <span id="nav">
       <ul>
         <!--
-       --><li><a href="/">الرئيسية</a></li><!--
+       --><li><a href="/">Inici</a></li><!--
      --><!--
-       --><li><a href="/about/">معلومات عنّي</a></li><!--
+       --><li><a href="/about/">Qui som</a></li><!--
      --><!--
-       --><li><a href="/archives/">منشورات</a></li><!--
+       --><li><a href="/archives/">Articles</a></li><!--
      --><!--
-       --><li><a href="/search/">بحث</a></li><!--
+       --><li><a href="/search/">Buscar</a></li><!--
      -->
       </ul>
     </span>
@@ -78,13 +78,13 @@
       <ul>
         
         
-        <li><a class="icon" aria-label="العودة إلى الأعلى" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="مشاركة المنشور" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+        <li><a class="icon" aria-label="Adalt" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Compartir Post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
       </ul>
-      <span id="i-prev" class="info" style="display:none;">المنشور السابق</span>
-      <span id="i-next" class="info" style="display:none;">المنشور التالي</span>
-      <span id="i-top" class="info" style="display:none;">العودة إلى الأعلى</span>
-      <span id="i-share" class="info" style="display:none;">مشاركة المنشور</span>
+      <span id="i-prev" class="info" style="display:none;">Post Anterior</span>
+      <span id="i-next" class="info" style="display:none;">Post Següent</span>
+      <span id="i-top" class="info" style="display:none;">Adalt</span>
+      <span id="i-share" class="info" style="display:none;">Compartir Post</span>
     </span>
     <br/>
     <div id="share" style="display: none">
@@ -324,13 +324,13 @@
     <div id="nav-footer" style="display: none">
       <ul>
          
-          <li><a href="/">الرئيسية</a></li>
+          <li><a href="/">Inici</a></li>
          
-          <li><a href="/about/">معلومات عنّي</a></li>
+          <li><a href="/about/">Qui som</a></li>
          
-          <li><a href="/archives/">منشورات</a></li>
+          <li><a href="/archives/">Articles</a></li>
          
-          <li><a href="/search/">بحث</a></li>
+          <li><a href="/search/">Buscar</a></li>
         
       </ul>
     </div>
@@ -357,10 +357,10 @@
     </div>
 
     <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> القائمة</a>
-        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> المحتويات</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> مشاركة</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> العودة إلى الأعلى</a>
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menú</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Compartir</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Cap amunt</a>
     </div>
 
   </div>
@@ -369,7 +369,7 @@
         
         <footer id="footer">
   <div class="footer-left">
-    حقوق النشر &copy;
+    Copyright &copy;
     
     
     2016-2022
@@ -379,13 +379,13 @@
     <nav>
       <ul>
         <!--
-       --><li><a href="/">الرئيسية</a></li><!--
+       --><li><a href="/">Inici</a></li><!--
      --><!--
-       --><li><a href="/about/">معلومات عنّي</a></li><!--
+       --><li><a href="/about/">Qui som</a></li><!--
      --><!--
-       --><li><a href="/archives/">منشورات</a></li><!--
+       --><li><a href="/archives/">Articles</a></li><!--
      --><!--
-       --><li><a href="/search/">بحث</a></li><!--
+       --><li><a href="/search/">Buscar</a></li><!--
      -->
       </ul>
     </nav>
