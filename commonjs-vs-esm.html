@@ -6,19 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="[toc] CommonJs(CJS) scripts 的規範已被廣泛使用，特別是使用於 Node.js 的伺服器端開發，它也用於瀏覽器端的開發，但因為瀏覽器端不支援 CommonJs ，所以程式碼必須經過編譯器轉譯，而 ESM scripts (ES6 aka ES2015)另一個主流模組。 CommonJs 可以通過使用 require() 和 module.exports 來使用，而 ES">
+    <meta name="description" content="[toc]  CommonJS(CJS) scripts 規範已被廣泛使用在 Node.js 的伺服器端開發，它也用於瀏覽器端的開發，但因為瀏覽器端不支援 CommonJS ，所以程式碼必須經過編譯器轉譯，而 ESM scripts (ES6 aka ES2015)另一個主流模組。 CommonJS 可以通過使用 require() 和 module.exports 來使用，而 ESM 則是使用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="commonjs-vs-esm">
+<meta property="og:title" content="什麼是 CJS ? 什麼是 ESM ?">
 <meta property="og:url" content="https://milletbard.github.io/commonjs-vs-esm.html">
 <meta property="og:site_name" content="MILLETBARD">
-<meta property="og:description" content="[toc] CommonJs(CJS) scripts 的規範已被廣泛使用，特別是使用於 Node.js 的伺服器端開發，它也用於瀏覽器端的開發，但因為瀏覽器端不支援 CommonJs ，所以程式碼必須經過編譯器轉譯，而 ESM scripts (ES6 aka ES2015)另一個主流模組。 CommonJs 可以通過使用 require() 和 module.exports 來使用，而 ES">
+<meta property="og:description" content="[toc]  CommonJS(CJS) scripts 規範已被廣泛使用在 Node.js 的伺服器端開發，它也用於瀏覽器端的開發，但因為瀏覽器端不支援 CommonJS ，所以程式碼必須經過編譯器轉譯，而 ESM scripts (ES6 aka ES2015)另一個主流模組。 CommonJS 可以通過使用 require() 和 module.exports 來使用，而 ESM 則是使用">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://milletbard.github.io/01.jpg">
+<meta property="og:image" content="https://milletbard.github.io/commonjs-vs-esm/img.jpg">
 <meta property="article:published_time" content="2022-06-15T16:44:38.000Z">
-<meta property="article:modified_time" content="2022-06-16T19:39:00.766Z">
+<meta property="article:modified_time" content="2022-06-16T19:50:20.354Z">
 <meta property="article:author" content="milletbard">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://milletbard.github.io/01.jpg">
+<meta name="twitter:image" content="https://milletbard.github.io/commonjs-vs-esm/img.jpg">
     
     
       
@@ -38,7 +38,7 @@
       
     
     <!-- title -->
-    <title>commonjs-vs-esm</title>
+    <title>什麼是 CJS ? 什麼是 ESM ?</title>
     <!-- styles -->
     
 <link rel="stylesheet" href="/css/style.css">
@@ -55,9 +55,9 @@
 <body class="max-width mx-auto px3 ltr">
     
       <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="القائمة"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="القائمة"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="الأعلى" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
   <span id="menu">
     <span id="nav">
       <ul>
@@ -91,16 +91,16 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://milletbard.github.io/commonjs-vs-esm.html" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://milletbard.github.io/commonjs-vs-esm.html&text=commonjs-vs-esm" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://milletbard.github.io/commonjs-vs-esm.html&title=commonjs-vs-esm" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://milletbard.github.io/commonjs-vs-esm.html&is_video=false&description=commonjs-vs-esm" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=commonjs-vs-esm&body=Check out this article: https://milletbard.github.io/commonjs-vs-esm.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://milletbard.github.io/commonjs-vs-esm.html&title=commonjs-vs-esm" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://milletbard.github.io/commonjs-vs-esm.html&title=commonjs-vs-esm" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://milletbard.github.io/commonjs-vs-esm.html&title=commonjs-vs-esm" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://milletbard.github.io/commonjs-vs-esm.html&title=commonjs-vs-esm" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://milletbard.github.io/commonjs-vs-esm.html&name=commonjs-vs-esm&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://milletbard.github.io/commonjs-vs-esm.html&t=commonjs-vs-esm" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://milletbard.github.io/commonjs-vs-esm.html&text=什麼是 CJS ? 什麼是 ESM ?" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://milletbard.github.io/commonjs-vs-esm.html&title=什麼是 CJS ? 什麼是 ESM ?" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://milletbard.github.io/commonjs-vs-esm.html&is_video=false&description=什麼是 CJS ? 什麼是 ESM ?" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=什麼是 CJS ? 什麼是 ESM ?&body=Check out this article: https://milletbard.github.io/commonjs-vs-esm.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://milletbard.github.io/commonjs-vs-esm.html&title=什麼是 CJS ? 什麼是 ESM ?" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://milletbard.github.io/commonjs-vs-esm.html&title=什麼是 CJS ? 什麼是 ESM ?" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://milletbard.github.io/commonjs-vs-esm.html&title=什麼是 CJS ? 什麼是 ESM ?" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://milletbard.github.io/commonjs-vs-esm.html&title=什麼是 CJS ? 什麼是 ESM ?" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://milletbard.github.io/commonjs-vs-esm.html&name=什麼是 CJS ? 什麼是 ESM ?&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://milletbard.github.io/commonjs-vs-esm.html&t=什麼是 CJS ? 什麼是 ESM ?" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -117,7 +117,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        commonjs-vs-esm
+        什麼是 CJS ? 什麼是 ESM ?
     </h1>
 
 
@@ -144,12 +144,12 @@
   
 
   <div class="content" itemprop="articleBody">
-    <p><img src="01.jpg" alt=""></p>
-<p>[toc]</p>
-<p>CommonJs(CJS) scripts 的規範已被廣泛使用，特別是使用於 Node.js 的伺服器端開發，它也用於瀏覽器端的開發，但因為瀏覽器端不支援 CommonJs ，所以程式碼必須經過編譯器轉譯，而 ESM scripts (ES6 aka ES2015)另一個主流模組。</p>
-<p>CommonJs 可以通過使用 require() 和 module.exports 來使用，而 ESM 則是使用 import 和 export 語法來實現類似 (其實不太一樣) 的功能。</p>
+    <p>[toc]</p>
+<p><img src="./commonjs-vs-esm/img.jpg" alt=""></p>
+<p>CommonJS(CJS) scripts 規範已被廣泛使用在 Node.js 的伺服器端開發，它也用於瀏覽器端的開發，但因為瀏覽器端不支援 CommonJS ，所以程式碼必須經過編譯器轉譯，而 ESM scripts (ES6 aka ES2015)另一個主流模組。</p>
+<p>CommonJS 可以通過使用 require() 和 module.exports 來使用，而 ESM 則是使用 import 和 export 語法來實現類似 (其實不太一樣) 的功能。</p>
 <p><strong>ESM 和 CJS 是完全不同的</strong>。儘管從表面上來看，ESM 看起來非常相似。</p>
-<h2 id="什麼是-CJS-什麼是-ESM"><a href="#什麼是-CJS-什麼是-ESM" class="headerlink" title="什麼是 CJS ? 什麼是 ESM ?"></a>什麼是 CJS ? 什麼是 ESM ?</h2><p>從 Node 誕生開始，Node Module 就透過 CommonJs 進行開發，並透過 <code>require()</code> 引入它們，當實作了 script，提供給他人使用，可以定義 <code>exports</code>,使用 <strong>命名導出</strong> <code>module.exports.foo = &#39;bar&#39;</code> 或是 <strong>默認導出</strong> <code>module.exports = &#39;baz&#39;</code> 的方式導出 script。</p>
+<h2 id="什麼是-CJS-什麼是-ESM"><a href="#什麼是-CJS-什麼是-ESM" class="headerlink" title="什麼是 CJS ? 什麼是 ESM ?"></a>什麼是 CJS ? 什麼是 ESM ?</h2><p>從 Node 誕生開始，Node Module 就透過 CommonJS 進行開發，並透過 <code>require()</code> 引入它們，當實作了 script，提供給他人使用，可以定義 <code>exports</code>,使用 <strong>命名導出</strong> <code>module.exports.foo = &#39;bar&#39;</code> 或是 <strong>默認導出</strong> <code>module.exports = &#39;baz&#39;</code> 的方式導出 script。</p>
 <p>使用 <strong>命名導出</strong> 的 CJS 範例</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @filename: utils.cjs</span></span><br><span class="line"><span class="built_in">module</span>.exports.sum = <span class="function">(<span class="params">x, y</span>) =&gt;</span> x + y;</span><br><span class="line"></span><br><span class="line"><span class="comment">// @filename: main.cjs</span></span><br><span class="line"><span class="keyword">const</span> &#123; sun &#125; = <span class="built_in">require</span>(<span class="string">"./utils.cjs"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="number">2</span>, <span class="number">4</span>));</span><br></pre></td></tr></table></figure>
 
@@ -172,13 +172,7 @@
 <p>這就是為什麼即使在瀏覽器中，&lt;script&gt; 標籤的默認設定不是 ESM 的；必須添加 <code>type=&quot;module&quot;</code> 才可以進入 ESM 模式，將默認設定從 CJS 切換到 ESM 將會是對兼容性的重大突破。</p>
 <h2 id="CJS-不能-require-ESM"><a href="#CJS-不能-require-ESM" class="headerlink" title="CJS 不能 require ESM"></a>CJS 不能 <code>require</code> ESM</h2><p>CJS 不能 <code>require</code> ESM 的最簡單原因是因為 ESM 可以做 top-level <code>await</code>，而 CJS scripts 不行。</p>
 <blockquote>
-<p>top-level <code>await</code> 可以讓我們在 async function 之外使用 <code>await</code> 關鍵字。</p>
-</blockquote>
-<p>ESM 的 multi-pasge loader 使 ESM 可以實現 top-level <code>await</code>。</p>
-<blockquote>
-<p>引用 V8 團隊 blog<br>Perhaps you have seen the infamous gist by Rich Harris which initially outlined a number of concerns about top-level await and urged the JavaScript language not to implement the feature. Some specific concerns were:</p>
-<p>• Top-level await could block execution.<br>• Top-level await could block fetching resources.<br>• There would be no clear interop story for CommonJS modules.</p>
-<p>The stage 3 version of the proposal directly addresses these issues:<br>• As siblings are able to execute, there is no definitive blocking.<br>• Top-level await occurs during the execution phase of the module graph. At this point all resources have already been fetched and linked. There is no risk of blocking fetching resources.<br>• Top-level await is limited to [ESM] modules. There is explicitly no support for scripts or for CommonJS modules.</p>
+<p>top-level <code>await</code> 可以讓我們在 async function 之外使用 <code>await</code> 關鍵字。<br>ESM 的 multi-pasge loader 使 ESM 可以實現 top-level <code>await</code>。</p>
 </blockquote>
 <p>由於 CJS 不支援 top-level <code>await</code>，因此甚至不可能將 ESM top-level <code>await</code> 轉換為 CJS。</p>
 <h2 id="CJS-可以-import-ESM，但不是很方便"><a href="#CJS-可以-import-ESM，但不是很方便" class="headerlink" title="CJS 可以 import() ESM，但不是很方便"></a>CJS 可以 import() ESM，但不是很方便</h2><p>如果想要使用 CJS import ESM script，可以使用 dynamic import 的方式:</p>
@@ -235,16 +229,16 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://milletbard.github.io/commonjs-vs-esm.html" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://milletbard.github.io/commonjs-vs-esm.html&text=commonjs-vs-esm" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://milletbard.github.io/commonjs-vs-esm.html&title=commonjs-vs-esm" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://milletbard.github.io/commonjs-vs-esm.html&is_video=false&description=commonjs-vs-esm" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=commonjs-vs-esm&body=Check out this article: https://milletbard.github.io/commonjs-vs-esm.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://milletbard.github.io/commonjs-vs-esm.html&title=commonjs-vs-esm" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://milletbard.github.io/commonjs-vs-esm.html&title=commonjs-vs-esm" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://milletbard.github.io/commonjs-vs-esm.html&title=commonjs-vs-esm" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://milletbard.github.io/commonjs-vs-esm.html&title=commonjs-vs-esm" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://milletbard.github.io/commonjs-vs-esm.html&name=commonjs-vs-esm&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://milletbard.github.io/commonjs-vs-esm.html&t=commonjs-vs-esm" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://milletbard.github.io/commonjs-vs-esm.html&text=什麼是 CJS ? 什麼是 ESM ?" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://milletbard.github.io/commonjs-vs-esm.html&title=什麼是 CJS ? 什麼是 ESM ?" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://milletbard.github.io/commonjs-vs-esm.html&is_video=false&description=什麼是 CJS ? 什麼是 ESM ?" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=什麼是 CJS ? 什麼是 ESM ?&body=Check out this article: https://milletbard.github.io/commonjs-vs-esm.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://milletbard.github.io/commonjs-vs-esm.html&title=什麼是 CJS ? 什麼是 ESM ?" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://milletbard.github.io/commonjs-vs-esm.html&title=什麼是 CJS ? 什麼是 ESM ?" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://milletbard.github.io/commonjs-vs-esm.html&title=什麼是 CJS ? 什麼是 ESM ?" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://milletbard.github.io/commonjs-vs-esm.html&title=什麼是 CJS ? 什麼是 ESM ?" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://milletbard.github.io/commonjs-vs-esm.html&name=什麼是 CJS ? 什麼是 ESM ?&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://milletbard.github.io/commonjs-vs-esm.html&t=什麼是 CJS ? 什麼是 ESM ?" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -308,7 +302,7 @@
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"انسخ!\">";
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
     btn += '<i class="far fa-clone"></i>';
     btn += '</span>'; 
     // mount it!
@@ -319,7 +313,7 @@
       }
     });
     clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "تم النسخ!");
+      e.trigger.setAttribute('aria-label', "Copied!");
       e.clearSelection();
     })
   })
