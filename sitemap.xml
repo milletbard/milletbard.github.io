@@ -4,57 +4,98 @@
   <url>
     <loc>https://milletbard.github.io/commonjs-vs-esm.html</loc>
     
-    <lastmod>2022-06-16T19:56:19.782Z</lastmod>
+    <lastmod>2022-06-16</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://milletbard.github.io/tags/index.html</loc>
     
-    <lastmod>2022-05-28T10:27:45.303Z</lastmod>
+    <lastmod>2022-05-28</lastmod>
     
-  </url>
-  
-  <url>
-    <loc>https://milletbard.github.io/search/index.html</loc>
-    
-    <lastmod>2022-05-28T10:27:45.302Z</lastmod>
-    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://milletbard.github.io/categories/index.html</loc>
     
-    <lastmod>2022-05-28T10:27:45.302Z</lastmod>
+    <lastmod>2022-05-28</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://milletbard.github.io/search/index.html</loc>
+    
+    <lastmod>2022-05-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://milletbard.github.io/about/index.html</loc>
     
-    <lastmod>2022-05-28T10:27:45.301Z</lastmod>
+    <lastmod>2022-05-28</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://milletbard.github.io/lodash.html</loc>
     
-    <lastmod>2022-05-28T10:27:45.263Z</lastmod>
+    <lastmod>2022-05-28</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://milletbard.github.io/create-hexo-blog.html</loc>
     
-    <lastmod>2022-05-28T10:27:45.262Z</lastmod>
+    <lastmod>2022-05-28</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://milletbard.github.io/JavaScript-event-loop.html</loc>
     
-    <lastmod>2022-05-28T10:27:45.259Z</lastmod>
+    <lastmod>2022-05-28</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+
+  <url>
+    <loc>https://milletbard.github.io/</loc>
+    <lastmod>2022-06-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  
+
+  
+  <url>
+    <loc>https://milletbard.github.io/categories/JavaScript/</loc>
+    <lastmod>2022-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://milletbard.github.io/categories/hexo/</loc>
+    <lastmod>2022-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
   </url>
   
 </urlset>
