@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="該如何執行 JavaScript透過 Node.js 運行 JavaScript官方安裝：https:&#x2F;&#x2F;nodejs.org&#x2F;en&#x2F; 安裝 Node.js 讓 JavaScript 跑跑跑起來node.js 並不是一種程式語言，而是一個運行環境，它可以讓 JavaScript 在終端機上直接就給它跑起來 所以如果要運行一隻 test.js 檔 test.js 12const test &#x3D; &quot;跑">
+<meta property="og:type" content="article">
+<meta property="og:title" content="程式導師實驗計畫 [第二週] JavaScript 程式基礎篇">
+<meta property="og:url" content="https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%BA%8C%E9%80%B1-%E7%A8%8B%E5%BC%8F%E5%9F%BA%E7%A4%8E%E7%AF%87.html">
+<meta property="og:site_name" content="MILLETBARD">
+<meta property="og:description" content="該如何執行 JavaScript透過 Node.js 運行 JavaScript官方安裝：https:&#x2F;&#x2F;nodejs.org&#x2F;en&#x2F; 安裝 Node.js 讓 JavaScript 跑跑跑起來node.js 並不是一種程式語言，而是一個運行環境，它可以讓 JavaScript 在終端機上直接就給它跑起來 所以如果要運行一隻 test.js 檔 test.js 12const test &#x3D; &quot;跑">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="https://milletbard.github.io/node.png">
+<meta property="og:image" content="https://milletbard.github.io/vscode.png">
+<meta property="article:published_time" content="2019-11-01T05:37:03.000Z">
+<meta property="article:modified_time" content="2022-05-28T10:27:45.293Z">
+<meta property="article:author" content="milletbard">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://milletbard.github.io/node.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>程式導師實驗計畫 [第二週] JavaScript 程式基礎篇</title><meta name="robots" content="noindex">
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="القائمة"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="القائمة"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="الأعلى" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">الرئيسية</a></li><!--
+     --><!--
+       --><li><a href="/about/">معلومات عنّي</a></li><!--
+     --><!--
+       --><li><a href="/archives/">منشورات</a></li><!--
+     --><!--
+       --><li><a href="/search/">بحث</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="العودة إلى الأعلى" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="مشاركة المنشور" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">المنشور السابق</span>
+      <span id="i-next" class="info" style="display:none;">المنشور التالي</span>
+      <span id="i-top" class="info" style="display:none;">العودة إلى الأعلى</span>
+      <span id="i-share" class="info" style="display:none;">مشاركة المنشور</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%BA%8C%E9%80%B1-%E7%A8%8B%E5%BC%8F%E5%9F%BA%E7%A4%8E%E7%AF%87.html" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%BA%8C%E9%80%B1-%E7%A8%8B%E5%BC%8F%E5%9F%BA%E7%A4%8E%E7%AF%87.html&text=程式導師實驗計畫 [第二週] JavaScript 程式基礎篇" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%BA%8C%E9%80%B1-%E7%A8%8B%E5%BC%8F%E5%9F%BA%E7%A4%8E%E7%AF%87.html&title=程式導師實驗計畫 [第二週] JavaScript 程式基礎篇" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%BA%8C%E9%80%B1-%E7%A8%8B%E5%BC%8F%E5%9F%BA%E7%A4%8E%E7%AF%87.html&is_video=false&description=程式導師實驗計畫 [第二週] JavaScript 程式基礎篇" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=程式導師實驗計畫 [第二週] JavaScript 程式基礎篇&body=Check out this article: https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%BA%8C%E9%80%B1-%E7%A8%8B%E5%BC%8F%E5%9F%BA%E7%A4%8E%E7%AF%87.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%BA%8C%E9%80%B1-%E7%A8%8B%E5%BC%8F%E5%9F%BA%E7%A4%8E%E7%AF%87.html&title=程式導師實驗計畫 [第二週] JavaScript 程式基礎篇" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%BA%8C%E9%80%B1-%E7%A8%8B%E5%BC%8F%E5%9F%BA%E7%A4%8E%E7%AF%87.html&title=程式導師實驗計畫 [第二週] JavaScript 程式基礎篇" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%BA%8C%E9%80%B1-%E7%A8%8B%E5%BC%8F%E5%9F%BA%E7%A4%8E%E7%AF%87.html&title=程式導師實驗計畫 [第二週] JavaScript 程式基礎篇" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%BA%8C%E9%80%B1-%E7%A8%8B%E5%BC%8F%E5%9F%BA%E7%A4%8E%E7%AF%87.html&title=程式導師實驗計畫 [第二週] JavaScript 程式基礎篇" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%BA%8C%E9%80%B1-%E7%A8%8B%E5%BC%8F%E5%9F%BA%E7%A4%8E%E7%AF%87.html&name=程式導師實驗計畫 [第二週] JavaScript 程式基礎篇&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%BA%8C%E9%80%B1-%E7%A8%8B%E5%BC%8F%E5%9F%BA%E7%A4%8E%E7%AF%87.html&t=程式導師實驗計畫 [第二週] JavaScript 程式基礎篇" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#該如何執行-JavaScript"><span class="toc-number">1.</span> <span class="toc-text">該如何執行 JavaScript</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#透過-Node-js-運行-JavaScript"><span class="toc-number">1.1.</span> <span class="toc-text">透過 Node.js 運行 JavaScript</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#安裝-Node-js-讓-JavaScript-跑跑跑起來"><span class="toc-number">1.1.1.</span> <span class="toc-text">安裝 Node.js 讓 JavaScript 跑跑跑起來</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用-VSCode-編輯-JavaScript"><span class="toc-number">1.2.</span> <span class="toc-text">使用 VSCode 編輯 JavaScript</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-基礎篇"><span class="toc-number">2.</span> <span class="toc-text">JavaScript 基礎篇</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#變數"><span class="toc-number">2.1.</span> <span class="toc-text">變數</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#宣告變數"><span class="toc-number">2.1.1.</span> <span class="toc-text">宣告變數</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#命名規則"><span class="toc-number">2.1.2.</span> <span class="toc-text">命名規則</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined-與-not-defined"><span class="toc-number">2.1.3.</span> <span class="toc-text">undefined 與 not defined</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#變數、函式、類別命名"><span class="toc-number">2.1.3.1.</span> <span class="toc-text">變數、函式、類別命名</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#變數的各種型態"><span class="toc-number">2.1.4.</span> <span class="toc-text">變數的各種型態</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#陣列"><span class="toc-number">2.2.</span> <span class="toc-text">陣列</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#一維陣列"><span class="toc-number">2.2.1.</span> <span class="toc-text">一維陣列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二維陣列"><span class="toc-number">2.2.2.</span> <span class="toc-text">二維陣列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#儲存多種型態"><span class="toc-number">2.2.3.</span> <span class="toc-text">儲存多種型態</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#拷貝陣列"><span class="toc-number">2.2.4.</span> <span class="toc-text">拷貝陣列</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#迴圈"><span class="toc-number">2.3.</span> <span class="toc-text">迴圈</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#for-迴圈"><span class="toc-number">2.3.1.</span> <span class="toc-text">for 迴圈</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#while-迴圈"><span class="toc-number">2.3.2.</span> <span class="toc-text">while 迴圈</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#判斷式"><span class="toc-number">2.4.</span> <span class="toc-text">判斷式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JavasScript-學習資源"><span class="toc-number">2.5.</span> <span class="toc-text">JavasScript 學習資源</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最直覺的變數型態：物件-Object"><span class="toc-number">3.</span> <span class="toc-text">最直覺的變數型態：物件(Object)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#沒那麼簡單-變數的運算"><span class="toc-number">4.</span> <span class="toc-text">沒那麼簡單 : 變數的運算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#注意型別"><span class="toc-number">4.1.</span> <span class="toc-text">注意型別</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意浮點數-float"><span class="toc-number">4.2.</span> <span class="toc-text">注意浮點數 float</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vs"><span class="toc-number">5.</span> <span class="toc-text">&#x3D;&#x3D; vs &#x3D;&#x3D;&#x3D;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#從-Object-的等號真正理解變數"><span class="toc-number">6.</span> <span class="toc-text">從 Object 的等號真正理解變數</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#記憶體位置"><span class="toc-number">6.1.</span> <span class="toc-text">記憶體位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更新物件"><span class="toc-number">6.2.</span> <span class="toc-text">更新物件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一份彙整了在-JavasScript-中被普遍使用的風格指南"><span class="toc-number">6.3.</span> <span class="toc-text">一份彙整了在 JavasScript 中被普遍使用的風格指南</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#從-ES6-開始的-JavaScript-學習生活"><span class="toc-number">6.4.</span> <span class="toc-text">從 ES6 開始的 JavaScript 學習生活</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#codemy"><span class="toc-number">6.5.</span> <span class="toc-text">codemy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Udemy"><span class="toc-number">6.6.</span> <span class="toc-text">Udemy</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#程式導師實驗計畫第三期"><span class="toc-number"></span> <span class="toc-text">程式導師實驗計畫第三期</span></a>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        程式導師實驗計畫 [第二週] JavaScript 程式基礎篇
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">milletbard</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-11-01T05:37:03.000Z" itemprop="datePublished">2019-11-01</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="該如何執行-JavaScript"><a href="#該如何執行-JavaScript" class="headerlink" title="該如何執行 JavaScript"></a>該如何執行 JavaScript</h2><h3 id="透過-Node-js-運行-JavaScript"><a href="#透過-Node-js-運行-JavaScript" class="headerlink" title="透過 Node.js 運行 JavaScript"></a>透過 Node.js 運行 JavaScript</h3><p>官方安裝：<a href="https://nodejs.org/en/" target="_blank" rel="noopener">https://nodejs.org/en/</a></p>
+<h4 id="安裝-Node-js-讓-JavaScript-跑跑跑起來"><a href="#安裝-Node-js-讓-JavaScript-跑跑跑起來" class="headerlink" title="安裝 Node.js 讓 JavaScript 跑跑跑起來"></a>安裝 Node.js 讓 JavaScript 跑跑跑起來</h4><p>node.js 並不是一種程式語言，而是一個運行環境，它可以讓 JavaScript 在終端機上直接就給它跑起來</p>
+<p>所以如果要運行一隻 test.js 檔</p>
+<p>test.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> test = <span class="string">"跑起來跑起來"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(test);</span><br></pre></td></tr></table></figure>
+
+<p>使用 node 關鍵字運行 test.js</p>
+<p><img src="node.png" alt=""></p>
+<h3 id="使用-VSCode-編輯-JavaScript"><a href="#使用-VSCode-編輯-JavaScript" class="headerlink" title="使用 VSCode 編輯 JavaScript"></a>使用 VSCode 編輯 JavaScript</h3><p>官方安裝：<a href="https://code.visualstudio.com/" target="_blank" rel="noopener">https://code.visualstudio.com/</a></p>
+<p>VSCode 是由微軟開發的一個編輯器 ，擁有非常強大的功能，而且內建終端機，再找時間做一個整理。</p>
+<p>用 VSCode 打開 test.js 檔案，並用它內建的終端機透過 node 運行 test.js 檔</p>
+<p><img src="vscode.png" alt=""></p>
+<h2 id="JavaScript-基礎篇"><a href="#JavaScript-基礎篇" class="headerlink" title="JavaScript 基礎篇"></a>JavaScript 基礎篇</h2><h3 id="變數"><a href="#變數" class="headerlink" title="變數"></a>變數</h3><h4 id="宣告變數"><a href="#宣告變數" class="headerlink" title="宣告變數"></a>宣告變數</h4><p>一開始在學程式的時候搞不太清楚變數(variable)到底是啥，其實概念就像一個可以裝東西箱子，建立一個箱子來裝東西的時候就相當於<strong>宣告</strong>一個變數來存放資料。<br>在<code>ES6標準</code>之後的 JavaScript 可以定義變數的種類，就像是宣告你想用哪個種類的的  箱子來裝這個東西。</p>
+<p>變數的種類:常數與變數</p>
+<ul>
+<li>常數(const):數值裝進去之後直接鎖起來，不能再更動裡面的數值</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//這個a是不可變的(常數)</span></span><br><span class="line"><span class="keyword">const</span> a = <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>變數(let):<strong>暫時</strong>存放數值的箱子，隨時可以更動裡面的數值</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//這個b是可變的(變數)</span></span><br><span class="line"><span class="keyword">let</span> b = <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+
+<p>而宣告數值的<code>=</code>並不是說<code>a</code>真的等於 10 的意思，比較類似於<strong>賦值</strong>的概念，把這個<code>10</code>裝進名叫<code>a</code>的箱子，把這個<code>10</code>賦予到名叫<code>a</code>的箱子上。</p>
+<h4 id="命名規則"><a href="#命名規則" class="headerlink" title="命名規則"></a>命名規則</h4><p>所以當我們要宣告這個變數，就需要先想一個好名字給它，有其命名規則存在。</p>
+<ul>
+<li>開頭必需是 ASCII 字元(英文大小寫字元)、錢號($)。不可以用數字當開頭。</li>
+<li>之後的字元就可以用數字，也能用底線( _ )。</li>
+<li>大小寫是什麼，使用的時候就是什麼，大小寫是有差的。</li>
+<li>名稱不可以使用 JavaScript 的保留字，例如 const 就是 JavaScript 的保留字。</li>
+</ul>
+<h4 id="undefined-與-not-defined"><a href="#undefined-與-not-defined" class="headerlink" title="undefined 與 not defined"></a><code>undefined</code> 與 <code>not defined</code></h4><p>undefined：有宣告這個變數，沒有賦予數值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> box;</span><br><span class="line"><span class="built_in">console</span>.log(box);</span><br><span class="line"><span class="comment">// output : undefined</span></span><br></pre></td></tr></table></figure>
+
+<p>not defined：連宣告都沒有宣告，根本沒有這個變數，就會是<code>not defined</code>，而且會就會出錯。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(somebox);</span><br></pre></td></tr></table></figure>
+
+<h5 id="變數、函式、類別命名"><a href="#變數、函式、類別命名" class="headerlink" title="變數、函式、類別命名"></a>變數、函式、類別命名</h5><ul>
+<li>小駝峰式(camelCase)<ul>
+<li>開頭小寫，後面的詞彙大寫，ex: this is a box =&gt; <code>thisIsABox</code></li>
+</ul>
+</li>
+<li>大駝峰式命名法(CamelCase)<ul>
+<li>每個詞彙都大寫，ex: this is a box =&gt; <code>ThisIsABox</code></li>
+</ul>
+</li>
+</ul>
+<p>變數與函式，用小駝峰式(camelCase)，類別用大駝峰式命名法(CamelCase)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> numberOfLegs <span class="comment">// 常數</span></span><br><span class="line"><span class="keyword">let</span> numberOfStudents <span class="comment">// 變數</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setBackgroundColor</span>(<span class="params"></span>) // 函式</span></span><br><span class="line"><span class="function"><span class="title">class</span> <span class="title">Student</span></span>&#123;&#125; <span class="comment">//類別</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="變數的各種型態"><a href="#變數的各種型態" class="headerlink" title="變數的各種型態"></a>變數的各種型態</h4><p>變數的原始型態就分為三種：<code>boolean</code>、<code>number</code>、<code>string</code></p>
+<p>另外三種型態分別為：<code>object</code>、<code>undefined</code>、<code>function</code></p>
+<p>可以透過<code>typeof</code>這個關鍵字來查詢變數的型態</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">"typeof true,"</span>, <span class="keyword">typeof</span> <span class="literal">true</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"typeof 30,"</span>, <span class="keyword">typeof</span> <span class="number">30</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"typeof 0.5,"</span>, <span class="keyword">typeof</span> <span class="number">0.5</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"typeof hello,"</span>, <span class="keyword">typeof</span> <span class="string">"hello"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"typeof 30,"</span>, <span class="keyword">typeof</span> <span class="string">"30"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"typeof [1],"</span>, <span class="keyword">typeof</span> [<span class="number">1</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"typeof &#123;a:1&#125;,"</span>, <span class="keyword">typeof</span> &#123; <span class="attr">a</span>: <span class="number">1</span> &#125;);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"typeof null,"</span>, <span class="keyword">typeof</span> <span class="literal">null</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"typeof undefined,"</span>, <span class="keyword">typeof</span> <span class="literal">undefined</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"typeof function,"</span>, <span class="keyword">typeof</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>結果如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">typeof true, boolean</span><br><span class="line">typeof 30, number</span><br><span class="line">typeof 0.5, number</span><br><span class="line">typeof hello, string</span><br><span class="line">typeof 30, string</span><br><span class="line">typeof [1], object # 註1</span><br><span class="line">typeof &#123;a:1&#125;, object</span><br><span class="line">typeof null, object # 註2</span><br><span class="line">typeof undefined, undefined</span><br><span class="line">typeof function, function</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>註 1 : 在 JavaScript 中其實沒有 array 的型態，如果查詢[1]會回傳 object</li>
+<li>註 2 : 需要注意的是<code>null</code>也被分在了<code>object</code></li>
+</ul>
+<h3 id="陣列"><a href="#陣列" class="headerlink" title="陣列"></a>陣列</h3><h4 id="一維陣列"><a href="#一維陣列" class="headerlink" title="一維陣列"></a>一維陣列</h4><p>一維陣列陣列的概念類似於一個箱子，裡面存放著多個東西</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fruits = [<span class="string">"banana"</span>, <span class="string">"apple"</span>, <span class="string">"watermelon"</span>];</span><br></pre></td></tr></table></figure>
+
+<p>陣列的索引值由 0 開始，可以透過 array[number]的方式才取得資料</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(fruits[<span class="number">0</span>]);</span><br><span class="line"><span class="comment">//output: banana</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="二維陣列"><a href="#二維陣列" class="headerlink" title="二維陣列"></a>二維陣列</h4><p>二維陣列就是箱子裡面又存放箱子，透過 array[number][number]第幾排第幾格來存取</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> magicMatrix = [</span><br><span class="line">  [<span class="number">2</span>, <span class="number">9</span>, <span class="number">4</span>],</span><br><span class="line">  [<span class="number">7</span>, <span class="number">5</span>, <span class="number">3</span>],</span><br><span class="line">  [<span class="number">6</span>, <span class="number">1</span>, <span class="number">8</span>],</span><br><span class="line">];</span><br><span class="line"><span class="built_in">console</span>.log(magicMatrix[<span class="number">1</span>][<span class="number">1</span>]); <span class="comment">//第一個陣列的索引值 1</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="儲存多種型態"><a href="#儲存多種型態" class="headerlink" title="儲存多種型態"></a>儲存多種型態</h4><p>JavaScript 的陣列並沒有規定只能存放哪種型態，陣列是可以存放不同型態的</p>
+<p>但是在陣列中儲存多種不同的資料型態，會影響到處理效能，如果有多種類型，倒不如都用字串類型，取值時再做轉換。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="string">"1"</span>, <span class="literal">true</span>];</span><br></pre></td></tr></table></figure>
+
+<h4 id="拷貝陣列"><a href="#拷貝陣列" class="headerlink" title="拷貝陣列"></a>拷貝陣列</h4><p>如果將一個陣列的變數在賦予給另一個變數，這並不是複製一份的意思，而是參照的概念<br>如果更動了<code>aArray</code>的數值，<code>bArray</code>也會跟著改變。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> aArray = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">const</span> bArray = aArray;</span><br><span class="line"></span><br><span class="line">aArray[<span class="number">0</span>] = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(bArray); <span class="comment">//[100, 2, 3]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="迴圈"><a href="#迴圈" class="headerlink" title="迴圈"></a>迴圈</h3><p>當條件達成時，重複執行程式。</p>
+<h4 id="for-迴圈"><a href="#for-迴圈" class="headerlink" title="for 迴圈"></a>for 迴圈</h4><p>範例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> count = <span class="number">0</span>; count &lt; <span class="number">10</span>; count++) &#123;</span><br><span class="line">  <span class="comment">//do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>迴圈一開始，count 賦予數值 0</li>
+<li>當 count &lt; 10 時 (判斷條件)，執行區塊中的程式碼。</li>
+<li>每當執行完區塊中的程式碼後，count++ 即 count +1</li>
+</ul>
+<h4 id="while-迴圈"><a href="#while-迴圈" class="headerlink" title="while 迴圈"></a>while 迴圈</h4><p>範例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (count &lt; <span class="number">10</span>) &#123;</span><br><span class="line">  <span class="comment">//do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="判斷式"><a href="#判斷式" class="headerlink" title="判斷式"></a>判斷式</h3><p>如果…我就…不然…我就…</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> x = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (x &gt; <span class="number">100</span>) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"x &gt; 100"</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"x &lt; 100"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>解釋: <code>x</code> 變數為 <code>10</code>，如果 <code>x</code> 大於 <code>100</code> 執行 <code>console.log(&#39;x &gt; 100&#39;)</code>，不然就執行 <code>console.log(&#39;x &lt; 100&#39;)</code></p>
+<h3 id="JavasScript-學習資源"><a href="#JavasScript-學習資源" class="headerlink" title="JavasScript 學習資源"></a>JavasScript 學習資源</h3><h2 id="最直覺的變數型態：物件-Object"><a href="#最直覺的變數型態：物件-Object" class="headerlink" title="最直覺的變數型態：物件(Object)"></a>最直覺的變數型態：物件(Object)</h2><p>物件取值的方法</p>
+<ul>
+<li>Object.key</li>
+<li>Object[key]</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> skillKey = <span class="string">"skill"</span>;</span><br><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">  name: <span class="string">"luke lin"</span>,</span><br><span class="line">  skill: <span class="string">"javascript"</span>,</span><br><span class="line">  pet: &#123;</span><br><span class="line">    name: <span class="string">"neinei"</span>,</span><br><span class="line">    sex: <span class="string">"male"</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person.skill); <span class="comment">// javascript</span></span><br><span class="line"><span class="built_in">console</span>.log(person[<span class="string">"skill"</span>]); <span class="comment">// javascript</span></span><br><span class="line"><span class="built_in">console</span>.log(person[skillKey]); <span class="comment">// javascript</span></span><br><span class="line"><span class="built_in">console</span>.log(person.pet.sex); <span class="comment">// male</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="沒那麼簡單-變數的運算"><a href="#沒那麼簡單-變數的運算" class="headerlink" title="沒那麼簡單 : 變數的運算"></a>沒那麼簡單 : 變數的運算</h2><p>各種注意！！注意還動啊！！！</p>
+<h3 id="注意型別"><a href="#注意型別" class="headerlink" title="注意型別"></a>注意型別</h3><p>javascript 屬於弱型別的程式語言，宣告變數的時候不用一起宣告型態，如果今天要執行某個運算</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="string">"1"</span>;</span><br><span class="line"><span class="keyword">const</span> b = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a + b);</span><br></pre></td></tr></table></figure>
+
+<p>前者<code>a</code>是 <code>string</code>後者<code>b</code>是<code>number</code>，結果會是啥？</p>
+<p>結果會印出<code>11</code>，所以要記得</p>
+<blockquote>
+<p>弱型別碰到型態不一樣的情況時，會嘗試自己轉換型態</p>
+</blockquote>
+<p>所以當碰到型態不同的情況時，可以先轉換成相同型態</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">consle.log(Nunber(a) + b); <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+
+<p>可參考這篇</p>
+<ul>
+<li><a href="https://openhome.cc/Gossip/CodeData/EssentialJavaScript/WeakType.html" target="_blank" rel="noopener">弱型別的代價</a></li>
+</ul>
+<h3 id="注意浮點數-float"><a href="#注意浮點數-float" class="headerlink" title="注意浮點數 float"></a>注意浮點數 float</h3><p>針對更精確的浮點數算法的幾種做法</p>
+<ul>
+<li>引入 Library</li>
+<li>定點小數表示法<a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed" target="_blank" rel="noopener">Number.prototype.toFixed()</a></li>
+<li>四捨五入<a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Math/round" target="_blank" rel="noopener">Math.round</a></li>
+</ul>
+<p>可參考這篇</p>
+<ul>
+<li><a href="https://pvencs.blogspot.com/2018/06/javascript.html" target="_blank" rel="noopener">JavaScript 浮點數計算的精確作法</a></li>
+</ul>
+<h2 id="vs"><a href="#vs" class="headerlink" title="== vs ==="></a>== vs ===</h2><p> 一般相等(==)會將型別一致化後才進行比較，嚴格相等(===)則不會，所以建議都只用嚴格相等(===)</p>
+<ul>
+<li>進行比較時當型別不一致則會先轉換型別</li>
+</ul>
+<p>嚴格相等</p>
+<ul>
+<li>進行比較的時候不會轉換型別，所以當型別不同時就會回傳<code>false</code></li>
+</ul>
+<p>參考資料</p>
+<ul>
+<li><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Equality_comparisons_and_sameness" target="_blank" rel="noopener">相等比較</a></li>
+</ul>
+<h2 id="從-Object-的等號真正理解變數"><a href="#從-Object-的等號真正理解變數" class="headerlink" title="從 Object 的等號真正理解變數"></a>從 Object 的等號真正理解變數</h2><h3 id="記憶體位置"><a href="#記憶體位置" class="headerlink" title="記憶體位置"></a>記憶體位置</h3><p>兩個物件看起來是一樣的，但比較的結果卻是<code>false</code>，因為<strong>物件</strong>的比較是比較<strong>記憶體位置</strong>，當物件在宣告時，會新增一個新的記憶體位置存放。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> objA = &#123;</span><br><span class="line">  name: <span class="string">"luke"</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> objB = &#123;</span><br><span class="line">  name: <span class="string">"luke"</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(objA === objB);</span><br><span class="line"><span class="comment">//output : flase</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="更新物件"><a href="#更新物件" class="headerlink" title="更新物件"></a>更新物件</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> objA = &#123;</span><br><span class="line">  name: <span class="string">"luke"</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> objB = objA;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(objB);</span><br><span class="line"><span class="comment">//output : &#123; name: 'luke' &#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>當 objB 被賦予 objA 這個物件的資料時，是以 objA 作為參照，因此記憶體位置是相同的，所以當 objA 的資料改變時， objB 也會跟著改變。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> objA = &#123;</span><br><span class="line">  name: <span class="string">"Luke"</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> objB = objA;</span><br><span class="line"></span><br><span class="line">objB.name = <span class="string">"Evan"</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(objA); <span class="comment">//&#123; name: 'Evan' &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(objA === objB); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>當物件本身被改變，記憶體位置也會改變。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> objA = &#123;</span><br><span class="line">  name: <span class="string">"Luke"</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> objB = objA;</span><br><span class="line"></span><br><span class="line">objB = &#123;</span><br><span class="line">  name: <span class="string">"Joe"</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(objA); <span class="comment">//&#123; name: 'Luke' &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(objB); <span class="comment">//&#123; name: 'Joe' &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(objA === objB); <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>網路上的學習資源很多</p>
+<ul>
+<li><h3 id="一份彙整了在-JavasScript-中被普遍使用的風格指南"><a href="#一份彙整了在-JavasScript-中被普遍使用的風格指南" class="headerlink" title="一份彙整了在 JavasScript 中被普遍使用的風格指南"></a><a href="https://github.com/jigsawye/javascript" target="_blank" rel="noopener">一份彙整了在 JavasScript 中被普遍使用的風格指南</a></h3></li>
+<li><h3 id="從-ES6-開始的-JavaScript-學習生活"><a href="#從-ES6-開始的-JavaScript-學習生活" class="headerlink" title="從 ES6 開始的 JavaScript 學習生活"></a><a href="https://eyesofkids.gitbooks.io/javascript-start-from-es6/content/" target="_blank" rel="noopener">從 ES6 開始的 JavaScript 學習生活</a></h3></li>
+</ul>
+<p>如果覺得光看文件有點苦澀的話也可以找找線上的教學平台</p>
+<ul>
+<li><h3 id="codemy"><a href="#codemy" class="headerlink" title="codemy"></a><a href="https://www.codecademy.com/learn" target="_blank" rel="noopener">codemy</a></h3></li>
+<li><h3 id="Udemy"><a href="#Udemy" class="headerlink" title="Udemy"></a><a href="https://www.udemy.com/zh-tw/" target="_blank" rel="noopener">Udemy</a></h3></li>
+</ul>
+<p> 以上就是這篇的筆記內容</p>
+<h1 id="程式導師實驗計畫第三期"><a href="#程式導師實驗計畫第三期" class="headerlink" title="程式導師實驗計畫第三期"></a><a href="https://github.com/Lidemy/mentor-program-3rd" target="_blank" rel="noopener">程式導師實驗計畫第三期</a></h1><!-- flag of hidden posts -->
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">الرئيسية</a></li>
+         
+          <li><a href="/about/">معلومات عنّي</a></li>
+         
+          <li><a href="/archives/">منشورات</a></li>
+         
+          <li><a href="/search/">بحث</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#該如何執行-JavaScript"><span class="toc-number">1.</span> <span class="toc-text">該如何執行 JavaScript</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#透過-Node-js-運行-JavaScript"><span class="toc-number">1.1.</span> <span class="toc-text">透過 Node.js 運行 JavaScript</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#安裝-Node-js-讓-JavaScript-跑跑跑起來"><span class="toc-number">1.1.1.</span> <span class="toc-text">安裝 Node.js 讓 JavaScript 跑跑跑起來</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用-VSCode-編輯-JavaScript"><span class="toc-number">1.2.</span> <span class="toc-text">使用 VSCode 編輯 JavaScript</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-基礎篇"><span class="toc-number">2.</span> <span class="toc-text">JavaScript 基礎篇</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#變數"><span class="toc-number">2.1.</span> <span class="toc-text">變數</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#宣告變數"><span class="toc-number">2.1.1.</span> <span class="toc-text">宣告變數</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#命名規則"><span class="toc-number">2.1.2.</span> <span class="toc-text">命名規則</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined-與-not-defined"><span class="toc-number">2.1.3.</span> <span class="toc-text">undefined 與 not defined</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#變數、函式、類別命名"><span class="toc-number">2.1.3.1.</span> <span class="toc-text">變數、函式、類別命名</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#變數的各種型態"><span class="toc-number">2.1.4.</span> <span class="toc-text">變數的各種型態</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#陣列"><span class="toc-number">2.2.</span> <span class="toc-text">陣列</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#一維陣列"><span class="toc-number">2.2.1.</span> <span class="toc-text">一維陣列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二維陣列"><span class="toc-number">2.2.2.</span> <span class="toc-text">二維陣列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#儲存多種型態"><span class="toc-number">2.2.3.</span> <span class="toc-text">儲存多種型態</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#拷貝陣列"><span class="toc-number">2.2.4.</span> <span class="toc-text">拷貝陣列</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#迴圈"><span class="toc-number">2.3.</span> <span class="toc-text">迴圈</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#for-迴圈"><span class="toc-number">2.3.1.</span> <span class="toc-text">for 迴圈</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#while-迴圈"><span class="toc-number">2.3.2.</span> <span class="toc-text">while 迴圈</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#判斷式"><span class="toc-number">2.4.</span> <span class="toc-text">判斷式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JavasScript-學習資源"><span class="toc-number">2.5.</span> <span class="toc-text">JavasScript 學習資源</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最直覺的變數型態：物件-Object"><span class="toc-number">3.</span> <span class="toc-text">最直覺的變數型態：物件(Object)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#沒那麼簡單-變數的運算"><span class="toc-number">4.</span> <span class="toc-text">沒那麼簡單 : 變數的運算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#注意型別"><span class="toc-number">4.1.</span> <span class="toc-text">注意型別</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意浮點數-float"><span class="toc-number">4.2.</span> <span class="toc-text">注意浮點數 float</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vs"><span class="toc-number">5.</span> <span class="toc-text">&#x3D;&#x3D; vs &#x3D;&#x3D;&#x3D;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#從-Object-的等號真正理解變數"><span class="toc-number">6.</span> <span class="toc-text">從 Object 的等號真正理解變數</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#記憶體位置"><span class="toc-number">6.1.</span> <span class="toc-text">記憶體位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更新物件"><span class="toc-number">6.2.</span> <span class="toc-text">更新物件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一份彙整了在-JavasScript-中被普遍使用的風格指南"><span class="toc-number">6.3.</span> <span class="toc-text">一份彙整了在 JavasScript 中被普遍使用的風格指南</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#從-ES6-開始的-JavaScript-學習生活"><span class="toc-number">6.4.</span> <span class="toc-text">從 ES6 開始的 JavaScript 學習生活</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#codemy"><span class="toc-number">6.5.</span> <span class="toc-text">codemy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Udemy"><span class="toc-number">6.6.</span> <span class="toc-text">Udemy</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#程式導師實驗計畫第三期"><span class="toc-number"></span> <span class="toc-text">程式導師實驗計畫第三期</span></a>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%BA%8C%E9%80%B1-%E7%A8%8B%E5%BC%8F%E5%9F%BA%E7%A4%8E%E7%AF%87.html" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%BA%8C%E9%80%B1-%E7%A8%8B%E5%BC%8F%E5%9F%BA%E7%A4%8E%E7%AF%87.html&text=程式導師實驗計畫 [第二週] JavaScript 程式基礎篇" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%BA%8C%E9%80%B1-%E7%A8%8B%E5%BC%8F%E5%9F%BA%E7%A4%8E%E7%AF%87.html&title=程式導師實驗計畫 [第二週] JavaScript 程式基礎篇" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%BA%8C%E9%80%B1-%E7%A8%8B%E5%BC%8F%E5%9F%BA%E7%A4%8E%E7%AF%87.html&is_video=false&description=程式導師實驗計畫 [第二週] JavaScript 程式基礎篇" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=程式導師實驗計畫 [第二週] JavaScript 程式基礎篇&body=Check out this article: https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%BA%8C%E9%80%B1-%E7%A8%8B%E5%BC%8F%E5%9F%BA%E7%A4%8E%E7%AF%87.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%BA%8C%E9%80%B1-%E7%A8%8B%E5%BC%8F%E5%9F%BA%E7%A4%8E%E7%AF%87.html&title=程式導師實驗計畫 [第二週] JavaScript 程式基礎篇" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%BA%8C%E9%80%B1-%E7%A8%8B%E5%BC%8F%E5%9F%BA%E7%A4%8E%E7%AF%87.html&title=程式導師實驗計畫 [第二週] JavaScript 程式基礎篇" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%BA%8C%E9%80%B1-%E7%A8%8B%E5%BC%8F%E5%9F%BA%E7%A4%8E%E7%AF%87.html&title=程式導師實驗計畫 [第二週] JavaScript 程式基礎篇" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%BA%8C%E9%80%B1-%E7%A8%8B%E5%BC%8F%E5%9F%BA%E7%A4%8E%E7%AF%87.html&title=程式導師實驗計畫 [第二週] JavaScript 程式基礎篇" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%BA%8C%E9%80%B1-%E7%A8%8B%E5%BC%8F%E5%9F%BA%E7%A4%8E%E7%AF%87.html&name=程式導師實驗計畫 [第二週] JavaScript 程式基礎篇&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://milletbard.github.io/%E7%A8%8B%E5%BC%8F%E5%B0%8E%E5%B8%AB%E5%AF%A6%E9%A9%97%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%BA%8C%E9%80%B1-%E7%A8%8B%E5%BC%8F%E5%9F%BA%E7%A4%8E%E7%AF%87.html&t=程式導師實驗計畫 [第二週] JavaScript 程式基礎篇" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> القائمة</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> المحتويات</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> مشاركة</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> العودة إلى الأعلى</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    حقوق النشر &copy;
+    
+    
+    2016-2022
+    milletbard
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">الرئيسية</a></li><!--
+     --><!--
+       --><li><a href="/about/">معلومات عنّي</a></li><!--
+     --><!--
+       --><li><a href="/archives/">منشورات</a></li><!--
+     --><!--
+       --><li><a href="/search/">بحث</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"انسخ!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "تم النسخ!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

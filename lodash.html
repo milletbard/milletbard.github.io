@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Why Lodash ?Lodash 在處理 arrays 、numbers、objects、strings 上更加容易，讓 Javascript 變得簡潔。 在專案中使用 lodash透過 npm or yarn安裝： 123npm i lodashoryarn add lodash  可以這樣引入： 123&#x2F;&#x2F;只 bundle 需要的功能import _map from &quot;lodash&#x2F;map">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[筆記] 紀錄在專案中使用過的lodash">
+<meta property="og:url" content="https://milletbard.github.io/lodash.html">
+<meta property="og:site_name" content="MILLETBARD">
+<meta property="og:description" content="Why Lodash ?Lodash 在處理 arrays 、numbers、objects、strings 上更加容易，讓 Javascript 變得簡潔。 在專案中使用 lodash透過 npm or yarn安裝： 123npm i lodashoryarn add lodash  可以這樣引入： 123&#x2F;&#x2F;只 bundle 需要的功能import _map from &quot;lodash&#x2F;map">
+<meta property="og:locale" content="zh">
+<meta property="article:published_time" content="2019-12-16T06:28:06.000Z">
+<meta property="article:modified_time" content="2022-05-28T10:27:45.263Z">
+<meta property="article:author" content="milletbard">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>[筆記] 紀錄在專案中使用過的lodash</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="القائمة"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="القائمة"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="الأعلى" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">الرئيسية</a></li><!--
+     --><!--
+       --><li><a href="/about/">معلومات عنّي</a></li><!--
+     --><!--
+       --><li><a href="/archives/">منشورات</a></li><!--
+     --><!--
+       --><li><a href="/search/">بحث</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="المنشور السابق" href="/commonjs-vs-esm.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="المنشور التالي" href="/JavaScript-event-loop.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="العودة إلى الأعلى" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="مشاركة المنشور" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">المنشور السابق</span>
+      <span id="i-next" class="info" style="display:none;">المنشور التالي</span>
+      <span id="i-top" class="info" style="display:none;">العودة إلى الأعلى</span>
+      <span id="i-share" class="info" style="display:none;">مشاركة المنشور</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://milletbard.github.io/lodash.html" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://milletbard.github.io/lodash.html&text=[筆記] 紀錄在專案中使用過的lodash" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://milletbard.github.io/lodash.html&title=[筆記] 紀錄在專案中使用過的lodash" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://milletbard.github.io/lodash.html&is_video=false&description=[筆記] 紀錄在專案中使用過的lodash" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[筆記] 紀錄在專案中使用過的lodash&body=Check out this article: https://milletbard.github.io/lodash.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://milletbard.github.io/lodash.html&title=[筆記] 紀錄在專案中使用過的lodash" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://milletbard.github.io/lodash.html&title=[筆記] 紀錄在專案中使用過的lodash" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://milletbard.github.io/lodash.html&title=[筆記] 紀錄在專案中使用過的lodash" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://milletbard.github.io/lodash.html&title=[筆記] 紀錄在專案中使用過的lodash" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://milletbard.github.io/lodash.html&name=[筆記] 紀錄在專案中使用過的lodash&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://milletbard.github.io/lodash.html&t=[筆記] 紀錄在專案中使用過的lodash" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Why-Lodash"><span class="toc-number">1.</span> <span class="toc-text">Why Lodash ?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在專案中使用-lodash"><span class="toc-number">2.</span> <span class="toc-text">在專案中使用 lodash</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#避免將-lodash-全數引入"><span class="toc-number">3.</span> <span class="toc-text">避免將 lodash 全數引入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#開發專案中用過的-lodash"><span class="toc-number">4.</span> <span class="toc-text">開發專案中用過的 lodash</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Collection"><span class="toc-number">5.</span> <span class="toc-text">Collection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Array"><span class="toc-number">6.</span> <span class="toc-text">Array</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Math"><span class="toc-number">7.</span> <span class="toc-text">Math</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lang"><span class="toc-number">8.</span> <span class="toc-text">Lang</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Object"><span class="toc-number">9.</span> <span class="toc-text">Object</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Util"><span class="toc-number">10.</span> <span class="toc-text">Util</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#String"><span class="toc-number">11.</span> <span class="toc-text">String</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#結語"><span class="toc-number">12.</span> <span class="toc-text">結語</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        [筆記] 紀錄在專案中使用過的lodash
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">milletbard</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-12-16T06:28:06.000Z" itemprop="datePublished">2019-12-16</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/JavaScript/">JavaScript</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Why-Lodash"><a href="#Why-Lodash" class="headerlink" title="Why Lodash ?"></a>Why Lodash ?</h2><p><strong>Lodash</strong> 在處理 arrays 、numbers、objects、strings 上更加容易，讓 Javascript 變得簡潔。</p>
+<h2 id="在專案中使用-lodash"><a href="#在專案中使用-lodash" class="headerlink" title="在專案中使用 lodash"></a>在專案中使用 lodash</h2><p>透過 <code>npm</code> or <code>yarn</code>安裝：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm i lodash</span><br><span class="line">or</span><br><span class="line">yarn add lodash</span><br></pre></td></tr></table></figure>
+
+<p>可以這樣引入：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//只 bundle 需要的功能</span></span><br><span class="line"><span class="keyword">import</span> _map <span class="keyword">from</span> <span class="string">"lodash/map"</span>;</span><br><span class="line"><span class="keyword">import</span> _filter <span class="keyword">from</span> <span class="string">"lodash/filter"</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// lodash將整包被 bundle 到輸出檔案中</span></span><br><span class="line"><span class="keyword">import</span> &#123; map, filter &#125; <span class="keyword">from</span> <span class="string">"lodash"</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="避免將-lodash-全數引入"><a href="#避免將-lodash-全數引入" class="headerlink" title="避免將 lodash 全數引入"></a>避免將 lodash 全數引入</h2><p>可以透過安裝 <a href="https://www.npmjs.com/package/babel-plugin-lodash" target="_blank" rel="noopener">babel-plugin-lodash</a>來避免 lodash 被全數引入，安裝後下列的寫法只會 bundle 需要的功能。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; map, filter &#125; <span class="keyword">from</span> <span class="string">"lodash"</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="開發專案中用過的-lodash"><a href="#開發專案中用過的-lodash" class="headerlink" title="開發專案中用過的 lodash"></a>開發專案中用過的 lodash</h2><p>defaultTo startsWith</p>
+<h2 id="Collection"><a href="#Collection" class="headerlink" title="Collection"></a>Collection</h2><p><strong>map(collection, [iteratee=_.identity])</strong><br>通過迭代集合中元素來創建陣列。</p>
+<pre><code>- collection (Array|Object): 將被遍歷的集合
+- [iteratee=_.identity] (Function): 每次迭代調用的函數.</code></pre><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; map &#125; <span class="keyword">from</span> <span class="string">"lodash"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> square = <span class="function">(<span class="params">n</span>) =&gt;</span> n * n;</span><br><span class="line"></span><br><span class="line">map([<span class="number">4</span>, <span class="number">8</span>], square);</span><br><span class="line"><span class="comment">// =&gt; [16, 64]</span></span><br><span class="line"></span><br><span class="line">map(&#123; <span class="attr">a</span>: <span class="number">4</span>, <span class="attr">b</span>: <span class="number">8</span> &#125;, square);</span><br><span class="line"><span class="comment">// // =&gt; [16, 64] (不能保證迭代順序))</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> users = [&#123; <span class="attr">user</span>: <span class="string">"barney"</span> &#125;, &#123; <span class="attr">user</span>: <span class="string">"fred"</span> &#125;];</span><br><span class="line"></span><br><span class="line"><span class="comment">// // `_.property` 的迭代縮寫.</span></span><br><span class="line">map(users, <span class="string">"user"</span>);</span><br><span class="line"><span class="comment">// // =&gt; ['barney', 'fred']</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>forEach(collection, [iteratee=_.identity])</strong><br>迭代集合，但不會回傳任何東西，可以通過 return false 提早退出迭代</p>
+<pre><code>- collection (Array|Object): 將被遍歷的集合.
+- [iteratee=_.identity] (Function): 每次迭代調用的函數.</code></pre><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; forEach &#125; <span class="keyword">from</span> <span class="string">"lodash"</span>;</span><br><span class="line"></span><br><span class="line">forEach([<span class="number">1</span>, <span class="number">2</span>], (value) =&gt; <span class="built_in">console</span>.log(value));</span><br><span class="line"><span class="comment">// =&gt; Logs `1` then `2`.</span></span><br><span class="line"></span><br><span class="line">forEach(&#123; <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span> &#125;, (value, key) =&gt; <span class="built_in">console</span>.log(key));</span><br><span class="line"><span class="comment">// =&gt; Logs 'a' then 'b' (不能保證迭代順序).</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>find(collection, [predicate=_.identity], [fromIndex=0])</strong><br>通過迭代集合找尋指定的元素</p>
+<pre><code>- collection: 將被遍歷的集合
+- predicate=_.identity : 每次迭代調用的函數
+- fromIndex : 起始位置</code></pre><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; find &#125; <span class="keyword">from</span> <span class="string">"lodash"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> users = [</span><br><span class="line">  &#123; <span class="attr">user</span>: <span class="string">"barney"</span>, <span class="attr">age</span>: <span class="number">36</span>, <span class="attr">active</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">user</span>: <span class="string">"fred"</span>, <span class="attr">age</span>: <span class="number">40</span>, <span class="attr">active</span>: <span class="literal">false</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">user</span>: <span class="string">"pebbles"</span>, <span class="attr">age</span>: <span class="number">1</span>, <span class="attr">active</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">find(users, (o) =&gt; o.age &lt; <span class="number">40</span>);</span><br><span class="line"><span class="comment">// =&gt; object for 'barney'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// `_.matches` 的迭代縮寫.</span></span><br><span class="line">find(users, &#123; <span class="attr">age</span>: <span class="number">1</span>, <span class="attr">active</span>: <span class="literal">true</span> &#125;);</span><br><span class="line"><span class="comment">// =&gt; object for 'pebbles'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// `_.matchesProperty` 的迭代縮寫.</span></span><br><span class="line">find(users, [<span class="string">"active"</span>, <span class="literal">false</span>]);</span><br><span class="line"><span class="comment">// =&gt; object for 'fred'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// `_.property` 的迭代縮寫.</span></span><br><span class="line">find(users, <span class="string">"active"</span>);</span><br><span class="line"><span class="comment">// =&gt; object for 'barney'</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>includes(collection, value, [fromIndex=0])</strong><br>檢查參考值是否在集合中</p>
+<pre><code>- collection (Array|Object|string): 將被檢查的集合.
+- value (*): 參考值.
+- [fromIndex=0](number): 起始位置.</code></pre><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; includes &#125; <span class="keyword">from</span> <span class="string">"lodash"</span>;</span><br><span class="line"></span><br><span class="line">includes([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="number">1</span>);</span><br><span class="line"><span class="comment">// =&gt; true</span></span><br><span class="line"></span><br><span class="line">includes([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line"><span class="comment">// =&gt; false</span></span><br><span class="line"></span><br><span class="line">includes(&#123; <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span> &#125;, <span class="number">1</span>);</span><br><span class="line"><span class="comment">// =&gt; true</span></span><br><span class="line"></span><br><span class="line">includes(<span class="string">"abcd"</span>, <span class="string">"bc"</span>);</span><br><span class="line"><span class="comment">// =&gt; true</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>some(collection, [predicate=_.identity])</strong><br>檢查是否有符合條件的元素，一旦判斷到符合條件的元素迭代就會停止。</p>
+<pre><code>- collection (Array|Object): 將被遍歷的集合.
+- [predicate=_.identity] (Function): 每次迭代調用的函數.</code></pre><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; some &#125; <span class="keyword">from</span> <span class="string">"lodash"</span>;</span><br><span class="line"></span><br><span class="line">some([<span class="literal">null</span>, <span class="number">0</span>, <span class="string">"yes"</span>, <span class="literal">false</span>], <span class="built_in">Boolean</span>);</span><br><span class="line"><span class="comment">// =&gt; true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> users = [</span><br><span class="line">  &#123; <span class="attr">user</span>: <span class="string">"barney"</span>, <span class="attr">active</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">user</span>: <span class="string">"fred"</span>, <span class="attr">active</span>: <span class="literal">false</span> &#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="comment">//  `_.matches` 的迭代縮寫.</span></span><br><span class="line">some(users, &#123; <span class="attr">user</span>: <span class="string">"barney"</span>, <span class="attr">active</span>: <span class="literal">false</span> &#125;);</span><br><span class="line"><span class="comment">// =&gt; false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// `_.matchesProperty`的迭代縮寫.</span></span><br><span class="line">some(users, [<span class="string">"active"</span>, <span class="literal">false</span>]);</span><br><span class="line"><span class="comment">// =&gt; true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//  `_.property` 的迭代縮寫.</span></span><br><span class="line">some(users, <span class="string">"active"</span>);</span><br><span class="line"><span class="comment">// =&gt; true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h2><p><strong>join(array, [separator=’,’])</strong><br>將指定的陣列用分隔符連接起來</p>
+<pre><code>- array (Array): 將被轉換的陣列.
+- [separator=&apos;,&apos;] (string): 分隔符.</code></pre><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; join &#125; <span class="keyword">from</span> <span class="string">"lodash"</span>;</span><br><span class="line"></span><br><span class="line">join([<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>], <span class="string">"~"</span>);</span><br><span class="line"><span class="comment">// =&gt; 'a~b~c'</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>findIndex(array, [predicate=_.identity], [fromIndex=0])</strong><br>通過迭代集合找尋指定的元素並回傳該位置的索引值</p>
+<pre><code>- array (Array): 將被檢查的陣列.
+- [predicate=_.identity] (Function): 每次迭代調用的函數.
+- [fromIndex=0] (number): 起始位置.</code></pre><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; findIndex &#125; <span class="keyword">from</span> <span class="string">"lodash"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> users = [</span><br><span class="line">  &#123; <span class="attr">user</span>: <span class="string">"barney"</span>, <span class="attr">active</span>: <span class="literal">false</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">user</span>: <span class="string">"fred"</span>, <span class="attr">active</span>: <span class="literal">false</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">user</span>: <span class="string">"pebbles"</span>, <span class="attr">active</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">findIndex(users, (o) =&gt; o.user == <span class="string">"barney"</span>);</span><br><span class="line"><span class="comment">// =&gt; 0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// `_.matches` 的迭代縮寫.</span></span><br><span class="line">findIndex(users, &#123; <span class="attr">user</span>: <span class="string">"fred"</span>, <span class="attr">active</span>: <span class="literal">false</span> &#125;);</span><br><span class="line"><span class="comment">// =&gt; 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// `_.matchesProperty` 的迭代縮寫.</span></span><br><span class="line">findIndex(users, [<span class="string">"active"</span>, <span class="literal">false</span>]);</span><br><span class="line"><span class="comment">// =&gt; 0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//  `_.property` 的迭代縮寫.</span></span><br><span class="line">findIndex(users, <span class="string">"active"</span>);</span><br><span class="line"><span class="comment">// =&gt; 2</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>head(array)</strong><br>獲取陣列的第一個元素</p>
+<pre><code>- array (Array): 要查詢的陣列.</code></pre><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; head &#125; <span class="keyword">from</span> <span class="string">"lodash"</span>;</span><br><span class="line"></span><br><span class="line">head([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);</span><br><span class="line"><span class="comment">// =&gt; 1</span></span><br><span class="line"></span><br><span class="line">head([]);</span><br><span class="line"><span class="comment">// =&gt; undefined</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Math"><a href="#Math" class="headerlink" title="Math"></a>Math</h2><p><strong>floor(number, [precision=0])</strong></p>
+<pre><code>- number : 四捨五入後的數字
+- [precision=0] : 往後 n 位小數點</code></pre><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; floor &#125; <span class="keyword">from</span> <span class="string">"lodash"</span>;</span><br><span class="line"></span><br><span class="line">floor(<span class="number">4.006</span>);</span><br><span class="line"><span class="comment">// =&gt; 4</span></span><br><span class="line"></span><br><span class="line">floor(<span class="number">0.046</span>, <span class="number">2</span>);</span><br><span class="line"><span class="comment">// =&gt; 0.04</span></span><br><span class="line"></span><br><span class="line">floor(<span class="number">4060</span>, <span class="number">-2</span>);</span><br><span class="line"><span class="comment">// =&gt; 4000</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Lang"><a href="#Lang" class="headerlink" title="Lang"></a>Lang</h2><p><strong>isNull(value)</strong><br>檢查該數值是否為 Null</p>
+<pre><code>- value (*): 將被檢查的數值.</code></pre><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; isNull &#125; <span class="keyword">from</span> <span class="string">"lodash"</span>;</span><br><span class="line"></span><br><span class="line">isNull(<span class="literal">null</span>);</span><br><span class="line"><span class="comment">// =&gt; true</span></span><br><span class="line"></span><br><span class="line">isNull(<span class="keyword">void</span> <span class="number">0</span>);</span><br><span class="line"><span class="comment">// =&gt; false</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>isFinite(value)</strong><br>檢查該數值是否為有限數值</p>
+<pre><code>- value(*): 將被檢查的數值.</code></pre><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="built_in">isFinite</span> &#125; <span class="keyword">from</span> <span class="string">"lodash"</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">isFinite</span>(<span class="number">3</span>);</span><br><span class="line"><span class="comment">// =&gt; true</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">isFinite</span>(<span class="built_in">Number</span>.MIN_VALUE);</span><br><span class="line"><span class="comment">// =&gt; true</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">isFinite</span>(<span class="literal">Infinity</span>);</span><br><span class="line"><span class="comment">// =&gt; false</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">isFinite</span>(<span class="string">"3"</span>);</span><br><span class="line"><span class="comment">// =&gt; false</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">isFinite</span>(<span class="number">1000</span> / <span class="number">0</span>);</span><br><span class="line"><span class="comment">// =&gt; false</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">isFinite</span>(<span class="number">1000</span> / <span class="number">1</span>);</span><br><span class="line"><span class="comment">// =&gt; true</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>isEmpty(value)</strong><br>檢查該數值是否為空集合</p>
+<pre><code>- value(*): 將被檢查的數值.</code></pre><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; isEmpty &#125; <span class="keyword">from</span> <span class="string">"lodash"</span>;</span><br><span class="line"></span><br><span class="line">isEmpty(<span class="literal">null</span>);</span><br><span class="line"><span class="comment">// =&gt; true</span></span><br><span class="line"></span><br><span class="line">isEmpty(<span class="literal">true</span>);</span><br><span class="line"><span class="comment">// =&gt; true</span></span><br><span class="line"></span><br><span class="line">isEmpty(<span class="number">1</span>);</span><br><span class="line"><span class="comment">// =&gt; true</span></span><br><span class="line"></span><br><span class="line">isEmpty([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);</span><br><span class="line"><span class="comment">// =&gt; false</span></span><br><span class="line"></span><br><span class="line">isEmpty(&#123; <span class="attr">a</span>: <span class="number">1</span> &#125;);</span><br><span class="line"><span class="comment">// =&gt; false</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h2><p><strong>get(object, path, [defaultValue])</strong><br>通過路徑獲取該物件的資料，如果是 undefined 則返回預設數值.</p>
+<pre><code>- object (Object): 要查詢的物件.
+- path (Array|string): 屬性路徑.
+- [defaultValue] (*): 預設數值.</code></pre><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="keyword">get</span> &#125; from "lodash";</span><br><span class="line"></span><br><span class="line">const object = &#123; a: [&#123; <span class="attr">b</span>: &#123; <span class="attr">c</span>: <span class="number">3</span> &#125; &#125;] &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">get</span>(object, "a[0].b.c");</span><br><span class="line">// =&gt; 3</span><br><span class="line"></span><br><span class="line"><span class="keyword">get</span>(object, ["a", "0", "b", "c"]);</span><br><span class="line">// =&gt; 3</span><br><span class="line"></span><br><span class="line"><span class="keyword">get</span>(object, "a.b.c", "default");</span><br><span class="line">// =&gt; 'default'</span><br></pre></td></tr></table></figure>
+
+<h2 id="Util"><a href="#Util" class="headerlink" title="Util"></a>Util</h2><p><strong>defaultTo(value, defaultValue)</strong><br>如果數值為 NaN 、 null 、 undefined 就返回預設值</p>
+<pre><code>- value (*): 將被檢查的數值.
+- defaultValue (*): 預設值.</code></pre><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; defaultTo &#125; <span class="keyword">from</span> <span class="string">"lodash"</span>;</span><br><span class="line"></span><br><span class="line">defaultTo(<span class="number">1</span>, <span class="number">10</span>);</span><br><span class="line"><span class="comment">// =&gt; 1</span></span><br><span class="line"></span><br><span class="line">defaultTo(<span class="literal">undefined</span>, <span class="number">10</span>);</span><br><span class="line"><span class="comment">// =&gt; 10</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><p><strong>startsWith([string=’’], [target], [position=0])</strong><br>檢查該位置的字串是否為目標字串</p>
+<pre><code>- [string=&apos;&apos;] (string): 將被檢查的字串.
+- [target] (string): 想找尋的字串.
+- [position=0] (number): 想找尋的位置.</code></pre><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; startsWith &#125; <span class="keyword">from</span> <span class="string">"lodash"</span>;</span><br><span class="line"></span><br><span class="line">startsWith(<span class="string">"abc"</span>, <span class="string">"a"</span>);</span><br><span class="line"><span class="comment">// =&gt; true</span></span><br><span class="line"></span><br><span class="line">startsWith(<span class="string">"abc"</span>, <span class="string">"b"</span>);</span><br><span class="line"><span class="comment">// =&gt; false</span></span><br><span class="line"></span><br><span class="line">startsWith(<span class="string">"abc"</span>, <span class="string">"b"</span>, <span class="number">1</span>);</span><br><span class="line"><span class="comment">// =&gt; true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h2><p>這篇參考<strong><a href="https://jigsawye.com/2017/09/04/make-good-use-of-lodash/" target="_blank" rel="noopener">充分利用 lodash 讓你的程式碼更易讀及維護– JIGSAWYE</a></strong>的文章。</p>
+<p>另外 lodash 還有提供 <strong><a href="https://github.com/lodash/lodash/wiki/FP-Guide" target="_blank" rel="noopener">lodash/fp</a></strong> 能夠使用 Functional Programming 讓程式碼更簡潔，如果有興趣可以看看官方文件或是參考 jigsawye 翻譯的 <strong><a href="https://jigsawye.gitbooks.io/mostly-adequate-guide/content/" target="_blank" rel="noopener">JavaScript Functional Programming 指南</a></strong></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">الرئيسية</a></li>
+         
+          <li><a href="/about/">معلومات عنّي</a></li>
+         
+          <li><a href="/archives/">منشورات</a></li>
+         
+          <li><a href="/search/">بحث</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Why-Lodash"><span class="toc-number">1.</span> <span class="toc-text">Why Lodash ?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在專案中使用-lodash"><span class="toc-number">2.</span> <span class="toc-text">在專案中使用 lodash</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#避免將-lodash-全數引入"><span class="toc-number">3.</span> <span class="toc-text">避免將 lodash 全數引入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#開發專案中用過的-lodash"><span class="toc-number">4.</span> <span class="toc-text">開發專案中用過的 lodash</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Collection"><span class="toc-number">5.</span> <span class="toc-text">Collection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Array"><span class="toc-number">6.</span> <span class="toc-text">Array</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Math"><span class="toc-number">7.</span> <span class="toc-text">Math</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lang"><span class="toc-number">8.</span> <span class="toc-text">Lang</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Object"><span class="toc-number">9.</span> <span class="toc-text">Object</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Util"><span class="toc-number">10.</span> <span class="toc-text">Util</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#String"><span class="toc-number">11.</span> <span class="toc-text">String</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#結語"><span class="toc-number">12.</span> <span class="toc-text">結語</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://milletbard.github.io/lodash.html" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://milletbard.github.io/lodash.html&text=[筆記] 紀錄在專案中使用過的lodash" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://milletbard.github.io/lodash.html&title=[筆記] 紀錄在專案中使用過的lodash" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://milletbard.github.io/lodash.html&is_video=false&description=[筆記] 紀錄在專案中使用過的lodash" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[筆記] 紀錄在專案中使用過的lodash&body=Check out this article: https://milletbard.github.io/lodash.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://milletbard.github.io/lodash.html&title=[筆記] 紀錄在專案中使用過的lodash" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://milletbard.github.io/lodash.html&title=[筆記] 紀錄在專案中使用過的lodash" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://milletbard.github.io/lodash.html&title=[筆記] 紀錄在專案中使用過的lodash" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://milletbard.github.io/lodash.html&title=[筆記] 紀錄在專案中使用過的lodash" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://milletbard.github.io/lodash.html&name=[筆記] 紀錄在專案中使用過的lodash&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://milletbard.github.io/lodash.html&t=[筆記] 紀錄在專案中使用過的lodash" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> القائمة</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> المحتويات</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> مشاركة</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> العودة إلى الأعلى</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    حقوق النشر &copy;
+    
+    
+    2016-2022
+    milletbard
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">الرئيسية</a></li><!--
+     --><!--
+       --><li><a href="/about/">معلومات عنّي</a></li><!--
+     --><!--
+       --><li><a href="/archives/">منشورات</a></li><!--
+     --><!--
+       --><li><a href="/search/">بحث</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"انسخ!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "تم النسخ!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
