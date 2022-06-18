@@ -47,9 +47,11 @@
 
 <p>ESM 會強制保持靜態結構，因此可以得到好處:</p>
 <ol>
-<li>Tree Shaking，打包期間移除沒有用到的代碼</li>
+<li><a href="#tree-shaking">Tree Shaking，打包期間移除沒有用到的代碼</a></li>
+<li><a href="#更緊湊的-bundle">更緊湊的 bundle</a></li>
+<li><a href="#更快的查詢並導入">更快的查詢並導入</a></li>
 </ol>
-<blockquote>
+<h3 id="Tree-Shaking"><a href="#Tree-Shaking" class="headerlink" title="Tree Shaking"></a>Tree Shaking</h3><blockquote>
 <p>可以將應用程式想像成一棵樹，實際使用到的 code 和 library 代表了綠色的還活著的葉子。死掉的程式碼代表枯萎的褐色葉子，為了擺脫枯葉，必須搖動樹，使它們掉落。</p>
 </blockquote>
 <p>在開發過程中，模組通常會這樣處理:</p>
@@ -70,10 +72,7 @@
 <li>將 <code>sideEffects</code> 屬性加入倒 package.json</li>
 <li>啟用 <code>webpack</code> 的 <code>production mode</code> 配置開啟 <a href="https://webpack.js.org/configuration/mode/#usage" target="_blank" rel="noopener">各種優化</a>。</li>
 </ul>
-<ol start="2">
-<li>更緊湊的 bundle</li>
-</ol>
-<p><a href="https://github.com/rollup/rollup" target="_blank" rel="noopener">The module bundler Rollup</a> 證明了 ESM 可以有效的組合，因為它們都適合單個範圍 (在重命名變數以消除變數衝突之後)，這也仰賴於 ESM 的兩個特性：</p>
+<h3 id="更緊湊的-bundle"><a href="#更緊湊的-bundle" class="headerlink" title="更緊湊的 bundle"></a>更緊湊的 bundle</h3><p><a href="https://github.com/rollup/rollup" target="_blank" rel="noopener">The module bundler Rollup</a> 證明了 ESM 可以有效的組合，因為它們都適合單個範圍 (在重命名變數以消除變數衝突之後)，這也仰賴於 ESM 的兩個特性：</p>
 <ul>
 <li><p>都是靜態結構意味著　 bundle 格式不需要考慮條件式載入的模組</p>
 </li>
@@ -86,10 +85,7 @@
 <p>Rollup 會將這兩個模組綁到單個 ES6 模組之下(刪除沒用到的 bar)</p>
 <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(foo());</span><br></pre></td></tr></table></figure>
 
-<ol start="3">
-<li>更快的查詢並導入</li>
-</ol>
-<p>如果需要 import CJS 的 libary，會得到一個物件：</p>
+<h3 id="更快的查詢並導入"><a href="#更快的查詢並導入" class="headerlink" title="更快的查詢並導入"></a>更快的查詢並導入</h3><p>如果需要 import CJS 的 libary，會得到一個物件：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lib = <span class="built_in">require</span>(lib);</span><br><span class="line">lib.someFunc(); <span class="comment">// property loopup</span></span><br></pre></td></tr></table></figure>
 
 <p>必須通過屬性去使用 <code>lib.someFunc</code>，這樣沒有效率，因為它是動態結構。</p>
