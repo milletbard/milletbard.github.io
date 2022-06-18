@@ -13,23 +13,23 @@
 <li><a href="#esm-不能-import-命名導出的-cjs">ESM 不能 import 命名導出的 CJS</a></li>
 <li><a href="#cjs-不能-require-esm">CJS 不能 require() ESM</a></li>
 <li><a href="#cjs-可以-import-esm-但不是很方便">CJS 可以 import() ESM 但不是很方便</a></li>
-<li><a href="#如何使-cjs-的-默認導出-可以使用-命名導出">如何使 CJS 的 <code>默認導出</code> 可以使用 <code>命名導出</code></a></li>
+<li><a href="#如何使-cjs-的-default-exports-可以使用-named-export">如何使 “CJS” 的 <code>default exports</code> 可以使用 <code>named export</code></a></li>
 <li><a href="#結語">結語</a></li>
 <li><a href="#參考">參考</a></li>
 </ul>
-<p>從 Node 誕生開始 CommonJS(CJS)就被廣泛使用來進行開發，透過 <code>require()</code> 引入它們，當實作了 script，提供給他人使用，可以定義 <code>exports</code>,使用 <strong>命名導出</strong> <code>module.exports.foo = &#39;bar&#39;</code> 或是 <strong>默認導出</strong> <code>module.exports = &#39;baz&#39;</code> 的方式導出 script。</p>
+<p>從 Node 誕生開始 CommonJS(CJS)就被廣泛使用來進行開發，透過 <code>require()</code> 引入它們，當實作了 script，提供給他人使用，可以定義 <code>exports</code>,使用 <strong>named exports</strong> <code>module.exports.foo = &#39;bar&#39;</code> 或是 <strong>default exports</strong> <code>module.exports = &#39;baz&#39;</code> 的方式導出 script。</p>
 <p><strong>ESM 和 CJS 是完全不同的</strong>。儘管從表面上來看，ESM 看起來非常相似。</p>
 <p>使用 <strong>命名導出</strong> 的 CJS 範例</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @filename: utils.CJS</span></span><br><span class="line"><span class="built_in">module</span>.exports.sum = <span class="function">(<span class="params">x, y</span>) =&gt;</span> x + y;</span><br><span class="line"><span class="comment">// @filename: main.CJS</span></span><br><span class="line"><span class="keyword">const</span> &#123; sun &#125; = <span class="built_in">require</span>(<span class="string">"./utils.CJS"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="number">2</span>, <span class="number">4</span>));</span><br></pre></td></tr></table></figure>
 
-<p>使用 <strong>默認導出</strong> 的 CJS 範例</p>
+<p>使用 <strong>default exports</strong> 的 CJS 範例</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @filenameL util.CJS</span></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function">(<span class="params">x, y</span>) =&gt;</span> x + y;</span><br><span class="line"></span><br><span class="line"><span class="comment">// @filenameL main.CJS</span></span><br><span class="line"><span class="keyword">const</span> whateverWeWant = reuqire(<span class="string">"./util.CJS"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(whateverWeWant(<span class="number">2</span>, <span class="number">4</span>));</span><br></pre></td></tr></table></figure>
 
-<p>在 ESM 中，使用 <code>import</code> 與 <code>export</code> ，對於 <strong>命名導出</strong> 和 <strong>默認導出</strong> 也有兩種不同的語法。</p>
-<p>使用 <strong>命名導出</strong> 的 ESM 範例。</p>
+<p>在 ESM 中，使用 <code>import</code> 與 <code>export</code> ，對於 <strong>default export</strong> 和 <strong>named export</strong> 也有兩種不同的語法。</p>
+<p>使用 <strong>named export</strong> 的 ESM 範例。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @filename: util.mjs</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> sum = <span class="function">(<span class="params">x, y</span>) =&gt;</span> x + y;</span><br><span class="line"></span><br><span class="line"><span class="comment">//@filename: main.mjs</span></span><br><span class="line"><span class="keyword">import</span> &#123; sum &#125; <span class="keyword">from</span> <span class="string">"./util.mjs"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="number">2</span>,v <span class="number">4</span>));</span><br></pre></td></tr></table></figure>
 
-<p>使用 <strong>默認導出</strong> 的 ESM 範例。</p>
+<p>使用 <strong>default export</strong> 的 ESM 範例。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @filename: util.mjs</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> (x, y) =&gt; x + y;</span><br><span class="line"></span><br><span class="line"><span class="comment">//@filename: main.mjs</span></span><br><span class="line"><span class="keyword">import</span> whateverWeWant <span class="keyword">from</span> <span class="string">"./util.mjs"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(whateverWeWant(<span class="number">2</span>, <span class="number">4</span>));</span><br></pre></td></tr></table></figure>
 
 <hr>
@@ -112,7 +112,7 @@
 <p><code>require</code> 在 ESM script 默認不在使用範圍內，但可以透過以下方式使用</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createRequire &#125; <span class="keyword">from</span> <span class="string">"module"</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="built_in">require</span> = createRequire(<span class="keyword">import</span>.meta.url);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> &#123; foo &#125; = <span class="built_in">require</span>(<span class="string">"./foo.CJS"</span>);</span><br></pre></td></tr></table></figure>
 
-<p>但是這樣的方式沒有實質上的幫助，實際上只是需要撰寫更多的程式碼，而且不僅僅是執行默認 import 與解構，像 webpack、Rollup 這樣的打包工具也不知道該怎麼處理 <code>createRequire</code> 模式，這樣就變得沒那麼有意義。</p>
+<p>但是這樣的方式沒有實質上的幫助，實際上只是需要撰寫更多的程式碼，而且不僅僅是執行 <code>import</code> 與解構，像 webpack、Rollup 這樣的打包工具也不知道該怎麼處理 <code>createRequire</code> 模式，這樣就變得沒那麼有意義。</p>
 <h2 id="CJS-不能-require-ESM"><a href="#CJS-不能-require-ESM" class="headerlink" title="CJS 不能 require() ESM"></a>CJS 不能 require() ESM</h2><p>CJS 不能 <code>require</code> ESM 的最簡單原因是因為 ESM 可以做 top-level <code>await</code>，而 CJS scripts 不行。</p>
 <blockquote>
 <p>top-level <code>await</code> 可以讓我們在 async function 之外使用 <code>await</code> 關鍵字。<br>ESM 的 multi-pasge loader 使 ESM 可以實現 top-level <code>await</code>。</p>
@@ -121,7 +121,7 @@
 <h2 id="CJS-可以-import-ESM-但不是很方便"><a href="#CJS-可以-import-ESM-但不是很方便" class="headerlink" title="CJS 可以 import() ESM 但不是很方便"></a>CJS 可以 import() ESM 但不是很方便</h2><p>如果想要使用 CJS import ESM script，可以使用 dynamic import 的方式:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; foo &#125; = <span class="keyword">await</span> <span class="keyword">import</span>(<span class="string">"./foo.mjs"</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<h2 id="如何使-CJS-的-默認導出-可以使用-命名導出"><a href="#如何使-CJS-的-默認導出-可以使用-命名導出" class="headerlink" title="如何使 CJS 的 默認導出 可以使用 命名導出"></a>如何使 CJS 的 <code>默認導出</code> 可以使用 <code>命名導出</code></h2><p>為 CJS 命名導出提供一個 ESM wrapper</p>
+<h2 id="如何使-“CJS”-的-default-exports-可以使用-named-export"><a href="#如何使-“CJS”-的-default-exports-可以使用-named-export" class="headerlink" title="如何使 “CJS” 的 default exports 可以使用 named export"></a>如何使 “CJS” 的 <code>default exports</code> 可以使用 <code>named export</code></h2><p>為 CJS 命名導出提供一個 ESM wrapper</p>
 <blockquote>
 <p>為 CJS libraries 提供 ESM wrapper 很容易，但永遠不可能為 ESM libraries 提供 CJS wrapper</p>
 </blockquote>
